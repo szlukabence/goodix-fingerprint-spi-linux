@@ -1,0 +1,57 @@
+name: "🔇 My sensor is silent too"
+description: "You ran the tools and got ff ff ff ff. Still useful — it tells us how widespread this is."
+title: "[SILENT] "
+labels: ["sensor-silent"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A negative result on *different hardware* is genuinely valuable: it
+        tells us whether this is one machine or the whole family.
+
+        Please do check [docs/OPEN-QUESTION.md](../blob/main/docs/OPEN-QUESTION.md)
+        first — it lists what has already been ruled out, so you don't spend
+        weeks re-testing it.
+
+  - type: input
+    id: hardware
+    attributes:
+      label: Laptop model
+      placeholder: "e.g. Huawei MateBook X Pro 2018"
+    validations:
+      required: true
+
+  - type: input
+    id: hid
+    attributes:
+      label: ACPI hardware ID
+      description: "`ls /sys/bus/acpi/devices/ | grep -i -E 'GXFP|GDIX'`"
+      placeholder: "e.g. GXFP5187"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: windows
+    attributes:
+      label: Does the sensor work under Windows on this machine?
+      options:
+        - "Yes"
+        - "No"
+        - "No Windows installed"
+    validations:
+      required: true
+
+  - type: textarea
+    id: output
+    attributes:
+      label: refseq.py output
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: pads
+    attributes:
+      label: Pad registers (optional but helpful)
+      description: "`sudo grep -E '^pin (4[0-9]|189) ' /sys/kernel/debug/pinctrl/INT34BB:00/pins`"
+      render: text

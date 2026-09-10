@@ -1,0 +1,58 @@
+name: "🎉 My sensor replied"
+description: "You got a valid header back on Linux. This is the report I most want."
+title: "[REPLIED] "
+labels: ["sensor-replied"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you — this is the single most useful thing anyone can post here.
+
+        Even a partial reply counts. If `tools/refseq.py` printed
+        `<<< VALID HEADER` even once, that is a result worth reporting.
+
+  - type: input
+    id: hardware
+    attributes:
+      label: Laptop model
+      placeholder: "e.g. Huawei MateBook 13 2020 (WRTB-WXX9)"
+    validations:
+      required: true
+
+  - type: input
+    id: hid
+    attributes:
+      label: ACPI hardware ID
+      description: "`ls /sys/bus/acpi/devices/ | grep -i -E 'GXFP|GDIX'`"
+      placeholder: "e.g. GXFP51A0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: how
+    attributes:
+      label: What made it reply?
+      options:
+        - "It just worked — first run of refseq.py"
+        - "A different reset sequence"
+        - "A different SPI speed or mode"
+        - "Something in the platform firmware / BIOS settings"
+        - "Changes to the code (please describe below)"
+        - "Not sure"
+    validations:
+      required: true
+
+  - type: textarea
+    id: output
+    attributes:
+      label: Output
+      description: "Paste the refseq.py output, or the bytes you got back. Whatever you have."
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else
+      description: "Kernel version, distro, what you changed, what you tried before it worked."

@@ -14,6 +14,24 @@ author is licensed to run, for the purpose of interoperability.
 
 ---
 
+## Please tell me what happens
+
+I can only test one laptop. If you have one of these sensors, **thirty seconds
+of your time is worth more to this project than anything else you could
+contribute** — including a negative result.
+
+| What happened | Report it |
+|---|---|
+| 🎉 Your sensor **replied** on Linux | [open an issue](../../issues/new?template=01-sensor-replied.yml) — this is the one I most want to see |
+| 🔬 You **captured the bus** with a logic analyser | [open an issue](../../issues/new?template=02-logic-capture.yml) — this closes the open question |
+| 🔇 Your sensor is **silent too** | [open an issue](../../issues/new?template=03-my-sensor-is-silent.yml) — tells us if it's one machine or the whole family |
+| 💬 Anything else | [Discussions](../../discussions) |
+
+A single "mine replied on a MateBook X Pro" would tell us more than another
+month of work on this end.
+
+---
+
 ## What was previously believed, and what is actually true
 
 The public state of the art for this sensor family got two important things

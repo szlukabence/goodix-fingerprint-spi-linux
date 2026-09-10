@@ -1,0 +1,70 @@
+name: "🔬 I captured the bus with a logic analyser"
+description: "You probed the sensor's flex cable. This closes the open question."
+title: "[CAPTURE] "
+labels: ["logic-capture"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is the measurement the whole project is waiting on. See
+        [docs/OPEN-QUESTION.md](../blob/main/docs/OPEN-QUESTION.md) for the
+        procedure and for what each outcome means.
+
+        Attach the raw capture if you can (`.sal`, `.vcd`, CSV export — anything).
+
+  - type: input
+    id: hardware
+    attributes:
+      label: Laptop model and ACPI hardware ID
+      placeholder: "e.g. Huawei MateBook 13 2020, GXFP51A0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: miso_windows
+    attributes:
+      label: Under Windows — does the sensor drive the data-in line?
+      options:
+        - "Yes, it replies"
+        - "No, silent"
+        - "Didn't capture under Windows"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: miso_linux
+    attributes:
+      label: Under Linux — does the sensor drive the data-in line?
+      options:
+        - "Yes, it replies"
+        - "No, silent"
+        - "Didn't capture under Linux"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: mosi
+    attributes:
+      label: Under Linux — do the host's bytes physically reach the sensor?
+      description: "i.e. is data-out carrying our commands"
+      options:
+        - "Yes, identical to Windows"
+        - "Yes, but different from Windows"
+        - "No, nothing on data-out"
+        - "Didn't check"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reset
+    attributes:
+      label: What does the reset / enable line do at power-on?
+      description: "Under Windows vs under Linux, if you captured both."
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Findings
+      description: "What you saw, where you probed, which analyser and sample rate."
+    validations:
+      required: true
