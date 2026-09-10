@@ -1,0 +1,26 @@
+Copyright (c) 2026
+
+This project is licensed under the GNU General Public License, version 2.
+
+The kernel driver in kernel/ carries the SPDX identifier GPL-2.0 and is
+licensed under GPL-2.0 so that it can be upstreamed. The tools and
+documentation are released under the same terms so the project can move as a
+single piece.
+
+Full licence text: https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
+
+NOT COVERED BY THIS LICENCE
+---------------------------
+This project does not redistribute, and this licence does not extend to:
+
+  * The Goodix MCU firmware images. They are Goodix's copyrighted code.
+    tools/extract_firmware.py extracts them from a driver you already possess,
+    and verifies them by hash; see docs/FIRMWARE.md.
+
+  * Goodix's Windows driver (gfspi.dll) or any part of it. The documentation
+    here describes observed behaviour and wire formats for the purpose of
+    interoperability; it contains no Goodix source or binary code.
+
+  * Per-device secrets (factory OTP, the BIOS-provisioned key window). Their
+    formats are documented; no such bytes from the author's hardware are
+    published.

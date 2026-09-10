@@ -1,0 +1,209 @@
+### REFSEQ  Thu Sep 10 11:01:23 PM CEST 2026   uptime 2093s
+
+=== bind spidev ===
+crw------- 1 root root 153, 0 Sep 10 22:27 /dev/spidev1.0
+
+### refseq  2026-09-10 23:01:23
+### uptime 2093s
+
+==============================================================================
+== reference  (high->low->RELEASE)             @ 10000 kHz
+==============================================================================
+  -- pads after acquire(value=1)      
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+  -- pads after drive LOW             
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000200 0x00000050 0x00000010 [LOCKED]
+  -- pads after RELEASE               
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100100 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000200 0x00000050 0x00000010 [LOCKED]
+  -- pads after 150ms settle          
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100100 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000200 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=0 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 62 5f 00 00 e0
+  RX mcuState               irq=0 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=0 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  -- pads end of variant              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100100 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000200 0x00000050 0x00000010 [LOCKED]
+
+==============================================================================
+== hold-low   (high->low->hold)                @ 10000 kHz
+==============================================================================
+  -- pads held LOW                    
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100100 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000200 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=0 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 fb 67 00 00 3f
+  RX mcuState               irq=0 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=0 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  -- pads end of variant              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100100 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000200 0x00000050 0x00000010 [LOCKED]
+
+==============================================================================
+== release-only (no pulse)                     @ 10000 kHz
+==============================================================================
+  -- pads after acquire+release       
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 8d 6e 00 00 a6
+  RX mcuState               irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  -- pads end of variant              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+
+==============================================================================
+== legacy     (low->high->hold)                @ 10000 kHz
+==============================================================================
+  -- pads held HIGH (legacy)          
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 46 71 00 00 ea
+  RX mcuState               irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  -- pads end of variant              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+
+==============================================================================
+== baseline   (no GPIO at all)                 @ 10000 kHz
+==============================================================================
+  -- pads untouched                   
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 5d 73 00 00 d1
+  RX mcuState               irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  -- pads end of variant              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+
+==============================================================================
+== reference  (high->low->RELEASE)             @ 1000 kHz
+==============================================================================
+  -- pads after acquire(value=1)      
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+  -- pads after drive LOW             
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000200 0x00000050 0x00000010 [LOCKED]
+  -- pads after RELEASE               
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100100 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000200 0x00000050 0x00000010 [LOCKED]
+  -- pads after 150ms settle          
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100100 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000200 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=0 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 c7 78 00 00 62
+  RX mcuState               irq=0 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=0 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  -- pads end of variant              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100100 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000200 0x00000050 0x00000010 [LOCKED]
+
+==============================================================================
+== hold-low   (high->low->hold)                @ 1000 kHz
+==============================================================================
+  -- pads held LOW                    
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100100 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000200 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=0 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 63 81 00 00 bd
+  RX mcuState               irq=0 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=0 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  -- pads end of variant              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100100 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000200 0x00000050 0x00000010 [LOCKED]
+
+==============================================================================
+== release-only (no pulse)                     @ 1000 kHz
+==============================================================================
+  -- pads after acquire+release       
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 fb 87 00 00 1f
+  RX mcuState               irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  -- pads end of variant              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+
+==============================================================================
+== legacy     (low->high->hold)                @ 1000 kHz
+==============================================================================
+  -- pads held HIGH (legacy)          
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 b0 8a 00 00 67
+  RX mcuState               irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  -- pads end of variant              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+
+==============================================================================
+== baseline   (no GPIO at all)                 @ 1000 kHz
+==============================================================================
+  -- pads untouched                   
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 ca 8c 00 00 4b
+  RX mcuState               irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  -- pads end of variant              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+
+==============================================================================
+no valid header under any variant
+==============================================================================

@@ -1,0 +1,19 @@
+# build artifacts
+*.o
+*.ko
+*.mod
+*.mod.c
+*.symvers
+*.order
+.tmp_versions/
+.*.cmd
+__pycache__/
+*.pyc
+
+# extracted firmware - Goodix copyright, never commit
+firmware/
+*_APP_*.bin
+
+# per-device dumps - treat as secrets
+sensor-otp.bin
+hwfp-window.bin

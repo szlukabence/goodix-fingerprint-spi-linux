@@ -1,0 +1,1121 @@
+[info ] InitLogOutput:00269                    WBDI Build Jul 13 2024 15:04:55, LogTarget 31, LogLevel 9, LogPath C:\ProgramData\Goodix\WBDI.log
+[debug] GetPowerInformation:00420              PowerCapability::0x01000100000101010101010000010000000001000000020000000000000001000000000000000000000000000000000000000000000000000000000000000000050000000000000000000000
+[debug] GetPowerInformation:00422              supports Modern Standby: No
+[info ] DriverEntry:00112                      Driver Entry Traditional S3
+[debug] DriverEntry:00126                      before WdfDriverCreate
+[debug] StartSessionDetection:00161            session thread enter
+[info ] DriverEntry:00155                      exit
+[info ] PowerNotificationCallback:00452        display state 0x1(0x2-dim/0x1-on/0x0-off)
+[debug] clear_submit_delay:04032               enter
+[info ] sessionThread:00108                    UNLOCK to clear pov data right away
+[warn ] ClearPOVImage:03806                    no pov data
+[debug] milanFusbEvtDeviceAdd:00186            Entry
+[info ] milanFusbCreateDevice:01356            enter
+[info ] GetCurrentFingerprintHardwareID:01258  enter
+[info ] GetCurrentFingerprintHardwareID:01280  HardwareID: ACPI\VEN_GXFP&DEV_51A0
+[warn ] GetCurrentFingerprintHardwareID:01302  HardwareID not match
+[info ] GetCurrentFingerprintHardwareID:01280  HardwareID: ACPI\GXFP51A0
+[info ] GetCurrentFingerprintHardwareID:01317  HardwareID match for product 3, ACPI\GXFP51A0
+[debug] milanFusbCreateDevice:01394            to support disable and enable
+[debug] milanFusbCreateDevice:01400            support S0Idle or SxWake
+[debug] milanFusbCreateDevice:01402            CONFIG DATA: hlk_test_switch 0, max_event_log_num 3
+[debug] milanFusbCreateDevice:01424            S0Idle: 10s, switch 0
+[info ] milanFusbCreateDevice:01624            exit, status: 0x0
+[debug] milanFusbEvtDeviceAdd:00188            Exit
+[info ] MilanEvtDevicePrepareHardware:04112    enter, driver version:1.1.141.40
+[debug] MilanEvtDevicePrepareHardware:04126    resource count: 3
+[info ] MilanEvtDevicePrepareHardware:04215    gpio-io count: 1, spi count: 1, interrupt count: 1, gpio.LowPart:5, gpio.HighPart:0, spi.LowPart:3, spi.HighPart:0
+[debug] MilanEvtDevicePrepareHardware:04279    interrupt pdr:FFFFFDEB9858EAA8
+[info ] SpbPeripheralOpen:00058                enter, LowPart:3, HighPart:0, DesiredAccess:0x12019f
+[info ] SpbPeripheralOpen:00058                enter, LowPart:5, HighPart:0, DesiredAccess:0x120116
+[info ] MilanEvtDevicePrepareHardware:04335    Start to create the target
+[info ] MilanEvtDevicePrepareHardware:04347    Start to open IO target
+[info ] MilanEvtDevicePrepareHardware:04360    Open the target success
+[info ] _init_global_hal_context:00367         enter
+[info ] device_data_analyze:01843              --- start
+[debug] device_data_analyze:01859              --- device_data_analyze g_halcontext.mode = 0xe
+[info ] startDataAnalyzeMonitoring:01827       Resume Thread device_fdtdata_analyze
+[info ] device_fdtdata_analyze:06399           --- start
+[info ] startfdtDataAnalyzeMonitoring:06391    Resume Thread device_fdtdata_analyze
+[info ] _init_global_hal_context:00431         exit 1
+[debug] MilanEvtDevicePrepareHardware:04381    exit, status: 0x0, bret:1
+[info ] MilanEvtDeviceD0Entry:04471            entry, prev state: 5(4-D3,5-D3Final), power action: 0, driver version 1.1.141.40
+[info ] MilanEvtDeviceD0Entry:04490            to call initialize_enclave, global_eid: 0
+[debug] initialize_enclave:00202               Entry
+[info ] initialize_enclave:00236               to sgx_create_enclave
+[info ] initialize_enclave:00238               call sgx_create_enclave: ret=0x0, global_eid=0x21469000000
+[info ] initialize_enclave:00273               Create WBDI Enclave Success, eid: 0x21469000000, token updated: 0
+[debug] init_enclave_ecall:00275               switch way len 1:1:0,
+[info ] initialize_enclave:00295               init_enclave_ecall sgx status: 0x0, retval: 0, log level:9, switch: 1, way: 1
+[debug] initialize_enclave:00318               Exit
+[debug] needupdate_engine_base:00582           Always needupdate engine base when system from S3/S4/S5 to S0
+[debug] _StartInitThread:05236                 enter
+[debug] _StopInitThread:05215                  enter
+[info ] _StartInitThread:05245                 to create init thread
+[debug] _StartInitThread:05254                 exit
+[info ] InitThread:00980                       --- Init: start
+[info ] MilanEvtDeviceD0Entry:04578            exit
+[debug] InitThread:00994                       Init: CONFIG DATA: time_wait_for_tls 1100, time_wait_for_pov 1200, retry_count_for_common_init 3
+[info ] _DeviceInit:00618                      ---- enter
+[debug] set_state:00679                        to set state from 0 to 1
+[debug] send_driver_install_to_MCU:01510       DriverState:Install
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x0-0-0x4-0(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] SpiSendDataToDevice:02146              !!not to wait for ack
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x9-3-0x2-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x96 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0x96
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] set_state:00679                        to set state from 1 to 3
+[debug] device_action:02814                    besdenable:0
+[debug] set_state:00679                        to set state from 3 to 1
+[info ] init_MCU:01346                         enter
+[debug] init_MCU:01361                         CONFIG DATA: retry_count_for_common_init 3
+[info ] GetEvkVersionWithRetry:01300           Get Evk Version...
+[debug] GetEvkVersion:04156                    enter
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x0-0-0x4-0(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] SpiSendDataToDevice:02146              !!not to wait for ack
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0xa-4-0x2-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0xa8 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0xa8
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 26, checksum: 186 and first 5 bytes: 0xa8 0x17 0x0 0x47 0x46
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xa-0x4-0x0-0x17-1
+[debug] data_from_device:03705                 --- cmd: other
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[info ] GetEvkVersion:04185                    got evk version: GF_ST411SEC_APP_14115
+[info ] GetEvkVersion:04193                    got evk version successful.
+[info ] GetEvkVersion:04235                    !!!ST firmware, used old cmd
+[info ] init_MCU:01394                         !!!GF3658 SPI:Update firmware
+[info ] init_MCU:01403                         !!!GF3658 SPI:Update ST firmware
+[info ] gdx_UpdateFirmware_LockState:04680     =>
+[debug] set_state:00679                        to set state from 1 to 4
+[debug] gfUpdatefirmware:04714                 CONFIG DATA: firmware_update_switch 1, retry_count_for_common_init 3
+[info ] gfUpdatefirmware:04734                 Current MCU Version: GF_ST411SEC_APP_14115, firmwareLen=86002, UpdateByDriver=1
+[info ] gf_findAPPOrIAP:06887                  Not Find :IAP
+[info ] gfUpdatefirmware:04741                 MCU not runs IAP
+[info ] gfUpdatefirmware:04746                 Driver auto update firmware
+[info ] gfUpdatefirmware:04749                 the same version, no need to update firmware
+[debug] gfUpdatefirmware:04857                 exit 1
+[debug] set_state:00679                        to set state from 4 to 1
+[info ] gdx_UpdateFirmware_LockState:04700     <= return with b_ret:1.
+[info ] init_MCU:01490                         exit return 1, inited 1
+[info ] init_FPSensor:01073                    enter
+[debug] init_FPSensor:01088                    CONFIG DATA: retry_count_for_common_init 3
+[debug] gfresetMCUAndfingerprint:04494         reset sensor
+[debug] gfresetMCUAndfingerprint:04505         to reset device, reset_flag 1, current fdt down mode 0
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0xa-1-0x2-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0xa2 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0xa2
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 7, checksum: 167 and first 5 bytes: 0xa2 0x4 0x0 0x1 0x0
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xa-0x1-0x0-0x4-1
+[debug] data_from_device:03705                 --- cmd: other
+[debug] get_other_data:04272                   CHIP_RESET::0x010008
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] init_FPSensor:01097                    --- MILAN_CHIPID
+[debug] ChipRegRead:00780                      to read reg, current fdt down mode 0
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x8-1-0x5-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x82 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0x82
+[trace] get_msg_data:04370                     get ack for read register, current fdt dowm mode:0
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 8, checksum: 168 and first 5 bytes: 0x82 0x5 0x0 0xa2 0x4
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0x8-0x1-0x0-0x5-1
+[debug] data_from_device:03668                 --- cmd: regrw
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[info ] ChipRegRead:00805                      evk version: GF_ST411SEC_APP_14115
+[info ] init_FPSensor:01115                    Get Chip ID: 0x2504
+[info ] device_enable_init_by_chip:01562       enter
+[info ] device_enable_init_by_chip:01579       to init device by chipid 0x2504
+[info ] device_enable_init_by_chip:01653       !!!! to Open ChicagoHS, sensor type: 12
+[info ] device_enable_init_by_chip:01670       sensor info ready, chipid:0x2504, sensorType:12, col:80, row:64
+[info ] device_enable_init_by_chip:01678       exit 1
+[info ] init_FPSensor:01133                    Get Chip ID: 0x2504 in 0 try
+[debug] set_state:00679                        to set state from 1 to 3
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0xa-3-0x2-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0xa6 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-3
+[trace] get_msg_data:04327                     get ack for cmd: 0xa6
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 68, checksum: 228 and first 5 bytes: 0xa6 0x41 0x0 0x53 0x32
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xa-0x3-0x0-0x41-3
+[debug] data_from_device:03705                 --- cmd: other
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] set_state:00679                        to set state from 3 to 1
+[debug] init_FPSensor:01154                    OTP::0x<REDACTED: per-device factory OTP, 64 bytes>
+[info ] init_FPSensor:01172                    Success to get OTP data
+[debug] set_state:00679                        to set state from 1 to 3
+[debug] CheckTcodeAndDiff:05157                enter
+[debug] download_general_config:00405          ~~~~~~~sensortype:12
+[debug] ChicagoHU_check_sensor:01308           enter, otp size 64, default tcode 128, default fdt delta 21
+[info ] ChicagoHU_check_sensor:01311           read 64 bytes from base file
+[debug] ChicagoHU_check_sensor:01312           read OTP from file: :0x<REDACTED: per-device factory OTP, 64 bytes>
+[info ] ChicagoHU_check_sensor:01316           the same OTP in file and from FP
+[debug] ChicagoHU_OTPCRCCheck:01206            entry
+[debug] ChicagoHU_OTPCRCCheck:01221            OTP cp data::0x<REDACTED: OTP cp sub-block>
+[debug] ChicagoHU_OTPCRCCheck:01223            cp check CRC=151, chip cp CRC=151
+[debug] ChicagoHU_OTPCRCCheck:01241            OTP mt data::0x<REDACTED: OTP mt sub-block>
+[debug] ChicagoHU_OTPCRCCheck:01243            mt check CRC=114, chip mt CRC=114
+[debug] ChicagoHU_OTPCRCCheck:01263            OTP ft data::0x<REDACTED: OTP ft sub-block>
+[debug] ChicagoHU_OTPCRCCheck:01265            ft check CRC=104, chip ft CRC=104
+[debug] chicagoHU_check_ft_info:00968          FT OTP check, CRC8 check success
+[debug] chicagoHU_series_update_dac_register_from_otp:01197 from otp dac 0xb98, dac1 0xbc, dac2 0xb9, dac3 0xb9
+[info ] modify_image_tcode:00455               data index: 0xeb, before update: 0x100 after update:0xe0, tcode:224
+[info ] modify_fdt_delta:00496                 data index: 0xc7, before update: 0x80 0x15 after update:0x80 0x21, delta:33
+[debug] ChicagoHU_check_sensor:01357           from otp, tcode 224, fdt delta 33
+[debug] ChicagoHU_check_sensor:01405           fdtOffset:0x0
+[info ] CheckTcodeAndDiff:05169                default 0, FDT_Init_ecall, sgx status: 0x0, sensortype: 12, fdt_delta:33, tcode:224
+[debug] gf_set_config:04603                    enter
+[debug] gfresetMCUAndfingerprint:04494         reset sensor
+[debug] gfresetMCUAndfingerprint:04505         to reset device, reset_flag 1, current fdt down mode 0
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0xa-1-0x2-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0xa2 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-3
+[trace] get_msg_data:04327                     get ack for cmd: 0xa2
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 7, checksum: 167 and first 5 bytes: 0xa2 0x4 0x0 0x1 0x0
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xa-0x1-0x0-0x4-3
+[debug] data_from_device:03705                 --- cmd: other
+[debug] get_other_data:04272                   CHIP_RESET::0x010008
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[info ] ChicagoHUSetMode:00432                 enter, Mode 7, Type 0, base_type 0
+[info ] ChicagoHUSetMode:00460                 current fdt down mode 0
+[info ] ChicagoHUSetMode:00545                 setmode: idle
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x7-0-0x2-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x70 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-3
+[trace] get_msg_data:04327                     get ack for cmd: 0x70
+[trace] get_msg_data:04366                     get ack for set idle, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] ChipRegWrite:00816                     ChipRegWrite enter
+[debug] ChipRegWrite:00822                     to write reg, current fdt down mode 0
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x8-0-0x5-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x80 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-3
+[trace] get_msg_data:04327                     get ack for cmd: 0x80
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] ChipRegWrite:00816                     ChipRegWrite enter
+[debug] ChipRegWrite:00822                     to write reg, current fdt down mode 0
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x8-0-0x5-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x80 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-3
+[trace] get_msg_data:04327                     get ack for cmd: 0x80
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] ChipRegWrite:00816                     ChipRegWrite enter
+[debug] ChipRegWrite:00822                     to write reg, current fdt down mode 0
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x8-0-0x5-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x80 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-3
+[trace] get_msg_data:04327                     get ack for cmd: 0x80
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] ChipRegWrite:00816                     ChipRegWrite enter
+[debug] ChipRegWrite:00822                     to write reg, current fdt down mode 0
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x8-0-0x5-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x80 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-3
+[trace] get_msg_data:04327                     get ack for cmd: 0x80
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] ChicagoHUsetDac:00387                  wrote down dac 0xb98, dac1 0xbc,dac2 0xb9, dac3 0xb9
+[debug] gf_set_config:04614                    exit, ret = 1, current fdt down mode 0
+[debug] gf_set_config:04616                    config sent: :0x701160712c9d2cc91ce518fd00fd00fd03ba000180ca000400840015b3860000c4880000ba8a0000b28c0000aa8e0000c19000bbbb9200b1b1940000a8960000b6980000009a000000d2000000d4000000d6000000d800000050000105d0000000700000007200785674003412200010402a0102042200012024003200800001005c008000560024205800030232000c02660003007c000058820080152a0182032200012024001400800001005c000001560004205800030232000c02660003007c000058820080212a0108005c008000540010016200040364001900660003007c0001582a0108005c00e0005200080054000001660003007c00015800882e
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x9-0-0x100-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x90 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-3
+[trace] get_msg_data:04327                     get ack for cmd: 0x90
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0x90 0x3 0x0 0x1 0x0
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0x9-0x0-0x0-0x3-3
+[debug] data_from_device:03675                 --- cmd: chip cfg
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[info ] ChicagoHUSetMode:00432                 enter, Mode 7, Type 0, base_type 0
+[info ] ChicagoHUSetMode:00460                 current fdt down mode 0
+[info ] ChicagoHUSetMode:00545                 setmode: idle
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x7-0-0x2-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x70 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-3
+[trace] get_msg_data:04327                     get ack for cmd: 0x70
+[trace] get_msg_data:04366                     get ack for set idle, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] ChipRegWrite:00816                     ChipRegWrite enter
+[debug] ChipRegWrite:00822                     to write reg, current fdt down mode 0
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x8-0-0x5-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x80 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-3
+[trace] get_msg_data:04327                     get ack for cmd: 0x80
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] ChipRegWrite:00816                     ChipRegWrite enter
+[debug] ChipRegWrite:00822                     to write reg, current fdt down mode 0
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x8-0-0x5-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x80 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-3
+[trace] get_msg_data:04327                     get ack for cmd: 0x80
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] ChipRegWrite:00816                     ChipRegWrite enter
+[debug] ChipRegWrite:00822                     to write reg, current fdt down mode 0
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x8-0-0x5-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x80 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-3
+[trace] get_msg_data:04327                     get ack for cmd: 0x80
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] ChipRegWrite:00816                     ChipRegWrite enter
+[debug] ChipRegWrite:00822                     to write reg, current fdt down mode 0
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x8-0-0x5-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x80 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-3
+[trace] get_msg_data:04327                     get ack for cmd: 0x80
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] ChicagoHUsetDac:00387                  wrote down dac 0xb98, dac1 0xbc,dac2 0xb9, dac3 0xb9
+[debug] set_state:00679                        to set state from 3 to 1
+[info ] init_FPSensor:01175                    success to get OTP data, download config return 1
+[info ] init_FPSensor:01183                    Success to get OTP and set config data 1 in 1 try
+[info ] init_FPSensor:01201                    after check sensor, set_config_data=1, before set power down scan frequency
+[info ] init_FPSensor:01292                    exit return 1, inited 1
+[debug] set_state:00679                        to set state from 1 to 3
+[debug] device_action:02814                    besdenable:1
+[debug] set_state:00679                        to set state from 3 to 1
+[info ] _DeviceInit:00659                      device init success
+[info ] _DeviceInit:00683                      FDT_Init_ecall, sgx status: 0x0, sensortype: 12, fdt_delta:33, tcode:224
+[info ] InitThread:01023                       Init Device Success
+[info ] InitThread:01047                       open identify retry.
+[info ] InitThread:01056                       deinit_buffer_ecall, sgx status: 0x0
+[info ] InitThread:01058                       device_disable_ecall, sgx status: 0x0
+[debug] init_buffer_ecall:00357                seal len 3200:3272
+[info ] init_buffer_ecall:00368                sensortype 12, len 10240, nav_len 3200, pov retry 1, max retry cnt 3
+[info ] InitThread:01060                       init_buffer_ecall, sgx status: 0x0, retval: 0, len:10240, nav_len:3200
+[info ] InitThread:01068                       mark tls handshake flag to false
+[info ] _TlsInitAndHandShake:00700             ---- enter
+[debug] _TlsInitAndHandShake:00747             CONFIG DATA: time_wait_for_tls 1100, time_wait_for_pov 1200
+[info ] _TlsInitAndHandShake:00774             tls init...
+[info ] TLSServerInit:00524                    to call tls_server_init_ecall with log level 0
+[info ] tls_server_init_ecall:00796            init to const pmk, tls log level 0
+[debug] tls_get_pmk:00366                      =>
+[debug] tlsapp_get_psk_data_cache:00124        CONFIG DATA: psk_cache_switch 1
+[debug] tlsapp_get_psk_data_cache:00161        Open cache file :C:\ProgramData\Goodix\Goodix_Cache.bin OK, will read data from it.
+[info ] tlsapp_get_psk_data_cache:00223        Read 1445 bytes.
+[debug] tlsapp_get_psk_data_cache:00238        <= exit with ret:0.
+[info ] tls_get_pmk:00403                      tlsapp_get_me_info_cache_ocall sgx_ret:0, ret 0, data len 1445
+[info ] tls_unseal_twice_enclave:00267         => tls_unseal_twice_enclave
+[info ] tls_unseal_enclave:00175               => TLS_Unseal_enclave
+[info ] tls_unseal_enclave:00215               sgx unseal, 0x0, 1445:885
+[info ] tls_unseal_enclave:00241               <= TLS_Unseal_enclave with ret:0x0.
+[info ] tls_unseal_enclave:00175               => TLS_Unseal_enclave
+[info ] tls_unseal_enclave:00215               sgx unseal, 0x0, 885:325
+[info ] tls_unseal_enclave:00241               <= TLS_Unseal_enclave with ret:0x0.
+[info ] tls_unseal_twice_enclave:00325         <= tls_unseal_twice_enclave with ret:0.
+[info ] tls_get_pmk:00412                      tls_unseal_twice_enclave ret:0
+[debug] tls_get_pmk:00493                      Enclave decrypted PMK data type:13, len:48.
+[info ] tls_get_pmk:00527                      <= with ret:0.
+[info ] tls_server_init_ecall:00806            get pmk success len 48
+[debug] goodix_keep_sgx_aes_key:00098          sec seal 0x0 48:112
+[info ] tlslib_server_init:00387               =>
+[info ] tlslib_server_exit:00519               =>
+[info ] tlslib_server_exit:00534               <=
+[info ] tlslib_server_init:00489               <= [Successfully] ret:0
+[info ] tls_server_init_ecall:00845            <= pmk_ret 0 tls_init_ret 0 exit with ret:0.
+[info ] TLSServerInit:00543                    TLS Init Success
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x0-0-0x4-0(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] SpiSendDataToDevice:02146              !!not to wait for ack
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0xd-0-0x2-0(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] SpiSendDataToDevice:02146              !!not to wait for ack
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0xd0 0x1
+[debug] SpiSendDataToDevice:02208              exit
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[trace] get_msg_data:04327                     get ack for cmd: 0xd0
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[info ] _TlsInitAndHandShake:00822             tls init...done within 141ms, system slow index 2, time for checking tls-hand-shake 1100ms, time_tls_handshake:2200
+[debug] get_msg_data:04426                     --- tls connection ack: 1
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 11, len: 52, checksum: 228 and first 5 bytes: 0x16 0x3 0x3 0x0 0x2f
+[debug] MilanEvtInterruptWorkItem:05143        enter
+[debug] DataFromTLS:05009                      enter
+[debug] DataFromTLS:05057                      ---- pack len: 52
+[info ] tls_read_ecall:00879                   enter => tls_read_ecall
+[info ] RecvTLSPackage:04929                   bytes to read: 5, bytes left: 52
+[info ] RecvTLSPackage:04944                   bytes read: 5, bytes left: 47
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 5 bytes data.]
+[info ] RecvTLSPackage:04929                   bytes to read: 47, bytes left: 47
+[info ] RecvTLSPackage:04944                   bytes read: 47, bytes left: 0
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 47 bytes data.]
+[debug] SendTLSPackage:04876                   --- send len: 86
+[debug] SendTLSPackage:04877                   TLS send data::0x16030300510200004d030395705a9936579d16cac3189da6fcdb9ce3e7c34461fabad74344f603f1313a0e2073926e5ab078259929f9263365c0cbf83b61e4ecaaa3fac3033f842ac9f8bc5000a8000005ff01000100
+[debug] SendTLSPackage:04918                   exit len=86
+[info ] tls_callback_send:00722                tls_callback_send send 86 bytes data.
+[debug] SendTLSPackage:04876                   --- send len: 9
+[debug] SendTLSPackage:04877                   TLS send data::0x16030300040e000000
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 11, len: 26, checksum: 202 and first 5 bytes: 0x16 0x3 0x3 0x0 0x15
+[debug] MilanEvtInterruptWorkItem:05143        enter
+[debug] DataFromTLS:05009                      enter
+[debug] SendTLSPackage:04918                   exit len=9
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 11, len: 6, checksum: 182 and first 5 bytes: 0x14 0x3 0x3 0x0 0x1
+[info ] tls_callback_send:00722                tls_callback_send send 9 bytes data.
+[debug] MilanEvtInterruptWorkItem:05143        enter
+[info ] RecvTLSPackage:04929                   bytes to read: 5, bytes left: 0
+[debug] DataFromTLS:05009                      enter
+[info ] RecvTLSPackage:04944                   bytes read: 0, bytes left: 0
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 0 bytes data.]
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 11, len: 45, checksum: 221 and first 5 bytes: 0x16 0x3 0x3 0x0 0x28
+[error] tlslib_read:00588                      tlslib_read error ret(abs): 0x7280, meaning:S.
+[debug] MilanEvtInterruptWorkItem:05143        enter
+[debug] tlsapp_set_tls_state_ocall:00508       input parameter state:8.
+[debug] DataFromTLS:05009                      enter
+[debug] tlsapp_set_tls_state_ocall:00515       TLS now IN handshake state:8.
+[info ] tlslib_read:00581                      <= tlslib_read exit with ret:-29312 tls server state:8.
+[info ] tls_read_ecall:00900                   exit <= TLS_Read_ecall exit with ret:-29312, [Server State : 8].
+[info ] DataFromTLS:05076                      TLS_Read_ecall end, sgx status:0x0, retval:-29312, g_onekeyImageHasSet:0, pack len:52, pack type = 0xb
+[debug] DataFromTLS:05113                      --- TLS_read_enclave end retval = -29312
+[debug] DataFromTLS:05057                      ---- pack len: 26
+[info ] tls_read_ecall:00879                   enter => tls_read_ecall
+[info ] RecvTLSPackage:04929                   bytes to read: 5, bytes left: 26
+[info ] RecvTLSPackage:04944                   bytes read: 5, bytes left: 21
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 5 bytes data.]
+[info ] RecvTLSPackage:04929                   bytes to read: 21, bytes left: 21
+[info ] RecvTLSPackage:04944                   bytes read: 21, bytes left: 0
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 21 bytes data.]
+[info ] RecvTLSPackage:04929                   bytes to read: 5, bytes left: 0
+[info ] RecvTLSPackage:04944                   bytes read: 0, bytes left: 0
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 0 bytes data.]
+[error] tlslib_read:00588                      tlslib_read error ret(abs): 0x7280, meaning:S.
+[debug] tlsapp_set_tls_state_ocall:00508       input parameter state:10.
+[debug] tlsapp_set_tls_state_ocall:00515       TLS now IN handshake state:10.
+[info ] tlslib_read:00581                      <= tlslib_read exit with ret:-29312 tls server state:10.
+[info ] tls_read_ecall:00900                   exit <= TLS_Read_ecall exit with ret:-29312, [Server State : 10].
+[info ] DataFromTLS:05076                      TLS_Read_ecall end, sgx status:0x0, retval:-29312, g_onekeyImageHasSet:0, pack len:26, pack type = 0xb
+[debug] DataFromTLS:05113                      --- TLS_read_enclave end retval = -29312
+[debug] DataFromTLS:05057                      ---- pack len: 6
+[info ] tls_read_ecall:00879                   enter => tls_read_ecall
+[info ] RecvTLSPackage:04929                   bytes to read: 5, bytes left: 6
+[info ] RecvTLSPackage:04944                   bytes read: 5, bytes left: 1
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 5 bytes data.]
+[info ] RecvTLSPackage:04929                   bytes to read: 1, bytes left: 1
+[info ] RecvTLSPackage:04944                   bytes read: 1, bytes left: 0
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 1 bytes data.]
+[info ] RecvTLSPackage:04929                   bytes to read: 5, bytes left: 0
+[info ] RecvTLSPackage:04944                   bytes read: 0, bytes left: 0
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 0 bytes data.]
+[error] tlslib_read:00588                      tlslib_read error ret(abs): 0x7280, meaning:S.
+[debug] tlsapp_set_tls_state_ocall:00508       input parameter state:11.
+[debug] tlsapp_set_tls_state_ocall:00515       TLS now IN handshake state:11.
+[info ] tlslib_read:00581                      <= tlslib_read exit with ret:-29312 tls server state:11.
+[info ] tls_read_ecall:00900                   exit <= TLS_Read_ecall exit with ret:-29312, [Server State : 11].
+[info ] DataFromTLS:05076                      TLS_Read_ecall end, sgx status:0x0, retval:-29312, g_onekeyImageHasSet:0, pack len:6, pack type = 0xb
+[debug] DataFromTLS:05113                      --- TLS_read_enclave end retval = -29312
+[debug] DataFromTLS:05057                      ---- pack len: 45
+[info ] tls_read_ecall:00879                   enter => tls_read_ecall
+[info ] RecvTLSPackage:04929                   bytes to read: 5, bytes left: 45
+[info ] RecvTLSPackage:04944                   bytes read: 5, bytes left: 40
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 5 bytes data.]
+[info ] RecvTLSPackage:04929                   bytes to read: 40, bytes left: 40
+[info ] RecvTLSPackage:04944                   bytes read: 40, bytes left: 0
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 40 bytes data.]
+[debug] SendTLSPackage:04876                   --- send len: 6
+[debug] SendTLSPackage:04877                   TLS send data::0x140303000101
+[debug] _TlsInitAndHandShake:00831             tls handshake already started
+[info ] _TlsInitAndHandShake:00851             TLS Handshake Started, waif for TLS handshake done(2200-100)...
+[debug] SendTLSPackage:04918                   exit len=6
+[info ] tls_callback_send:00722                tls_callback_send send 6 bytes data.
+[debug] SendTLSPackage:04876                   --- send len: 45
+[debug] SendTLSPackage:04877                   TLS send data::0x16030300280000000000000000cf50311affa335d2720551a1f082be29095a6b46dfefe2398ad98db0ced14ebe
+[debug] SendTLSPackage:04918                   exit len=45
+[info ] tls_callback_send:00722                tls_callback_send send 45 bytes data.
+[info ] RecvTLSPackage:04929                   bytes to read: 5, bytes left: 0
+[info ] RecvTLSPackage:04944                   bytes read: 0, bytes left: 0
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 0 bytes data.]
+[debug] tlsapp_set_tls_state_ocall:00508       input parameter state:16.
+[debug] tlsapp_set_tls_state_ocall:00515       TLS now IN handshake state:16.
+[info ] tlslib_read:00575                      TLS handshake over successfully.
+[info ] tlsapp_trig_tlsconnected_ocall:00666   !!TLS connection ready
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0xd-2-0x2-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[info ] tlslib_read:00581                      <= tlslib_read exit with ret:0 tls server state:16.
+[info ] tls_read_ecall:00900                   exit <= TLS_Read_ecall exit with ret:0, [Server State : 16].
+[info ] DataFromTLS:05076                      TLS_Read_ecall end, sgx status:0x0, retval:0, g_onekeyImageHasSet:0, pack len:45, pack type = 0xb
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0xd4 0x1
+[debug] DataFromTLS:05113                      --- TLS_read_enclave end retval = 0
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[debug] DataFromTLS:05129                      exit
+[debug] DataFromTLS:05129                      exit
+[debug] DataFromTLS:05129                      exit
+[debug] DataFromTLS:05129                      exit
+[trace] get_msg_data:04327                     get ack for cmd: 0xd4
+[debug] MilanEvtInterruptWorkItem:05155        exit
+[debug] MilanEvtInterruptWorkItem:05155        exit
+[debug] MilanEvtInterruptWorkItem:05155        exit
+[debug] MilanEvtInterruptWorkItem:05155        exit
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[info ] _TlsInitAndHandShake:00877             tls handshake done (server side), 625ms(since start of tls init)
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0xa-7-0x1-0(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] SpiSendDataToDevice:02146              !!not to wait for ack
+[debug] SpiSendDataToDevice:02208              exit
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0xae 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0xae
+[trace] get_msg_data:04374                     get ack for not listed data, current fdt dowm mode:0
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 20, checksum: 180 and first 5 bytes: 0xae 0x11 0x0 0x2 0x2
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xa-0x7-0x0-0x11-1
+[debug] data_from_device:03705                 --- cmd: other
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[info ] GetMcuState:02614                      hc hrc status 0
+[debug] PrintMcuState:02558                    mcu state::0x02023000000800003001000000000000510705
+[info ] _TlsInitAndHandShake:00898             mcu state: version:2, isImageValid:0, isTlsConnected:1, isLocked:0
+[notice] _TlsInitAndHandShake:00912             tls connected success confirmed
+[info ] _TlsInitAndHandShake:00938             tls handshake done (client/mcu side)
+[info ] _TlsInitAndHandShake:00961             exit, ret 1, bResetMCU 0, tls inited 1
+[info ] InitThread:01100                       TLS Handshake Success
+[info ] InitThread:01151                       Init: update all base...
+[debug] get_basesize_ecall:00529               seal len 3200:3272, 10240:10312
+[info ] device_check_imagebase_exist:05301     get_basesize_ecall, sgx status: 0x0, nav_buff_size: 3272, imagebase_size:10312
+[info ] device_check_imagebase_exist:05318     read 13664-13664 bytes from base file
+[info ] device_check_imagebase_exist:05327     check crc :Crchost:0x6efe5010----crcchip:0x6efe5010
+[debug] goodix_sgx_aes_unseal:00187            way 1, passed len 3272:3200
+[debug] goodix_sgx_aes_unseal:00197            unseal done
+[debug] goodix_sgx_aes_unseal:00213            unseal len 3272:3200
+[debug] goodix_sgx_aes_unseal:00187            way 1, passed len 10312:10240
+[debug] goodix_sgx_aes_unseal:00197            unseal done
+[debug] goodix_sgx_aes_unseal:00213            unseal len 10312:10240
+[debug] device_check_imagebase_exist_ecall:00599 goodix unseal 0x0 3272:3200, 0x0 10312:10240
+[info ] device_check_imagebase_exist:05360     device_check_imagebase_exist_ecall, sgx status: 0x0
+[info ] device_check_imagebase_exist:05386     imagebase exist: 1
+[debug] device_check_imagebase_exist:05392     update all base start
+[info ] gf_update_all_base:05587               enter
+[info ] gf_update_all_base:05604               to get fdt base 0
+[debug] gf_get_fdtbase:05483                   start
+[info ] ChicagoHUSetMode:00432                 enter, Mode 3, Type 3, base_type 1
+[info ] ChicagoHUSetMode:00460                 current fdt down mode 0
+[info ] ChicagoHUSetMode:00501                 setmode: Fdt manual
+[debug] ChicagoHUSetMode:00526                 switch to FDT mode 3(1Down2Up3Manual)
+[debug] ChicagoHUSetMode:00527                 base data sent::0xb5b5c9c9aaaababaa9a9baba
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x3-3-0xe-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x36 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0x36
+[trace] get_msg_data:04350                     get ack for set fdt manual, current fdt dowm mode:0
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 20, checksum: 180 and first 5 bytes: 0x36 0x11 0x0 0x0 0x1
+[debug] SpiSendDataToDevice:02208              exit
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0x3-0x3-0x0-0x11-1
+[debug] data_from_device:03660                 --- cmd: fdt
+[debug] chicagoHUget_fdtdata:00638             ChicagoIrqStatus:0x100
+[info ] chicagoHUget_fdtdata:00688             IRQ for fdt-manual, get fdt-up base, current mode is fdt-manual, touchflag 0x0
+[info ] chicagoHUget_fdtdata:00692             clear_buffer_ecall, sgx status: 0x0
+[debug] chicagoHUget_fdtdata:00695             received fdt base::0x6c0192015401740151017401
+[info ] chicagoHUget_fdtdata:00708             get fdt-down base, current mode is fdt-manual
+[debug] gfCheckFDTBase:00756                   fdt base:0x6c0192015401740151017401
+[debug] gfFDTDownbase:00789                    fdt_downbase[0]:0xb680
+[debug] gfFDTDownbase:00789                    fdt_downbase[1]:0xc980
+[debug] gfFDTDownbase:00789                    fdt_downbase[2]:0xaa80
+[debug] gfFDTDownbase:00789                    fdt_downbase[3]:0xba80
+[debug] gfFDTDownbase:00789                    fdt_downbase[4]:0xa880
+[debug] gfFDTDownbase:00789                    fdt_downbase[5]:0xba80
+[debug] device_data_analyze:01928              GF_FDT_MANUAL start
+[debug] device_data_analyze:01933              signal HANDLE_MANU
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] gf_get_fdtbase:05498                   success
+[info ] gf_update_all_base:05613               gf_get_navbase
+[debug] gf_get_navbase:05462                   get 12(3MilanL12MilanHu) nav data
+[info ] ChicagoHUSetMode:00432                 enter, Mode 5, Type 0, base_type 0
+[info ] ChicagoHUSetMode:00460                 current fdt down mode 0
+[info ] ChicagoHUSetMode:00582                 setmode: nav
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x5-0-0x2-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x50 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0x50
+[trace] get_msg_data:04358                     get ack for set nav, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 3313, checksum: 157 and first 5 bytes: 0x50 0xee 0xc 0xa6 0xb0
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0x5-0x0-0x0-0xcee-1
+[debug] data_from_device:03679                 --- recv nav data......length:3310
+[debug] data_from_device:03682                 data_from_device Len = 3304
+[debug] ChicagoHUDataRegroup:00062             Regroup pixels:2200
+[debug] data_from_device:03690                 data_from_device get_navdata ren = 1
+[debug] data_from_device:03695                 NAV crc check ok
+[debug] device_data_analyze:01902              got data for GF_NAV_MODE
+[info ] device_data_analyze:01905              is_buffer_empty_ecall, sgx status: 0x0, ret: 0
+[info ] device_data_analyze:01917              get_navbase_buffer_ecall, sgx status: 0x0
+[info ] device_data_analyze:01920              clear_buffer_ecall, sgx status: 0x0
+[debug] device_data_analyze:01923              signal HANDLE_NAV
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[info ] gf_update_all_base:05622               to get fdt base 1
+[debug] gf_get_fdtbase:05483                   start
+[info ] ChicagoHUSetMode:00432                 enter, Mode 3, Type 3, base_type 1
+[info ] ChicagoHUSetMode:00460                 current fdt down mode 0
+[info ] ChicagoHUSetMode:00501                 setmode: Fdt manual
+[debug] ChicagoHUSetMode:00526                 switch to FDT mode 3(1Down2Up3Manual)
+[debug] ChicagoHUSetMode:00527                 base data sent::0x80b680c980aa80ba80a880ba
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x3-3-0xe-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x36 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0x36
+[trace] get_msg_data:04350                     get ack for set fdt manual, current fdt dowm mode:0
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 20, checksum: 180 and first 5 bytes: 0x36 0x11 0x0 0x0 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0x3-0x3-0x0-0x11-1
+[debug] SpiSendDataToDevice:02208              exit
+[debug] data_from_device:03660                 --- cmd: fdt
+[debug] chicagoHUget_fdtdata:00638             ChicagoIrqStatus:0x100
+[info ] chicagoHUget_fdtdata:00688             IRQ for fdt-manual, get fdt-up base, current mode is fdt-manual, touchflag 0x0
+[info ] chicagoHUget_fdtdata:00692             clear_buffer_ecall, sgx status: 0x0
+[debug] chicagoHUget_fdtdata:00695             received fdt base::0x6a0190015301740151017401
+[info ] chicagoHUget_fdtdata:00708             get fdt-down base, current mode is fdt-manual
+[debug] gfCheckFDTBase:00756                   fdt base:0x6a0190015301740151017401
+[debug] gfFDTDownbase:00789                    fdt_downbase[0]:0xb580
+[debug] gfFDTDownbase:00789                    fdt_downbase[1]:0xc880
+[debug] gfFDTDownbase:00789                    fdt_downbase[2]:0xa980
+[debug] gfFDTDownbase:00789                    fdt_downbase[3]:0xba80
+[debug] gfFDTDownbase:00789                    fdt_downbase[4]:0xa880
+[debug] gfFDTDownbase:00789                    fdt_downbase[5]:0xba80
+[debug] device_data_analyze:01928              GF_FDT_MANUAL start
+[debug] device_data_analyze:01933              signal HANDLE_MANU
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] gf_get_fdtbase:05498                   success
+[debug] ChipRegRead:00780                      to read reg, current fdt down mode 0
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x8-1-0x5-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x82 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0x82
+[trace] get_msg_data:04370                     get ack for read register, current fdt dowm mode:0
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0x82 0x3 0x0 0x80 0x21
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0x8-0x1-0x0-0x3-1
+[debug] data_from_device:03668                 --- cmd: regrw
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[info ] ChipRegRead:00805                      evk version: GF_ST411SEC_APP_14115
+[info ] gf_update_all_base:05642               fdt_delta 0x21
+[info ] gf_update_all_base:05667               to get frame
+[info ] gf_get_oneframe:05530                  enter
+[debug] gf_get_oneframe:05533                  g_halcontext.sensor_ops.SetMode:0x00007FF9D8F0C410.
+[info ] ChicagoHUSetMode:00432                 enter, Mode 2, Type 0, base_type 0
+[info ] ChicagoHUSetMode:00460                 current fdt down mode 0
+[info ] ChicagoHUSetMode:00467                 setmode: Image
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x2-0-0x2-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x20 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0x20
+[trace] get_msg_data:04332                     get ack for set image, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00450          timeout, g_d0exit_start = 0
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 11, len: 10602, checksum: 67 and first 5 bytes: 0x17 0x3 0x3 0x29 0x65
+[debug] MilanEvtInterruptWorkItem:05143        enter
+[debug] DataFromTLS:05009                      enter
+[debug] SpiSendDataToDeviceLock:00450          timeout, g_d0exit_start = 0
+[debug] DataFromTLS:05057                      ---- pack len: 10602
+[info ] tls_read_ecall:00879                   enter => tls_read_ecall
+[info ] RecvTLSPackage:04929                   bytes to read: 5, bytes left: 10602
+[info ] RecvTLSPackage:04944                   bytes read: 5, bytes left: 10597
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 5 bytes data.]
+[info ] RecvTLSPackage:04929                   bytes to read: 10597, bytes left: 10597
+[info ] RecvTLSPackage:04944                   bytes read: 10597, bytes left: 0
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 10597 bytes data.]
+[debug] tlsapp_set_tls_state_ocall:00508       input parameter state:16.
+[debug] tlsapp_set_tls_state_ocall:00515       TLS now IN handshake state:16.
+[info ] tlslib_read:00581                      <= tlslib_read exit with ret:10573 tls server state:16.
+[info ] tls_read_ecall:00893                   tlslib_read OK Got:10573 bytes data. BEFORE call data_from_device_enclave
+[debug] SpiSendDataToDeviceLock:00450          timeout, g_d0exit_start = 0
+[debug] data_from_device_enclave:00997         =>Entry
+[error] data_from_device_enclave:01013         start LastCmdIndex != CurCmdIndex
+[debug] data_from_device_enclave:01026         Cmd:0x20, Cmd0:0x02, Cmd1:0x00, Cmd2:0x00, Length:10570
+[debug] chicagoHUget_rawdata:00071             =>Entry
+[debug] chicagoHUget_rawdata:00081             source data len:10560
+[debug] ChicagoHUDataRegroup:00062             Regroup pixels:5120
+[debug] chicagoHUget_rawdata:00099             1 <=Exit
+[debug] data_from_device_enclave:01134         crc check ok
+[debug] data_from_device_enclave:01144         <=Exit
+[info ] tls_read_ecall:00895                   AFTER call data_from_device_enclave
+[debug] SpiSendDataToDeviceLock:00450          timeout, g_d0exit_start = 0
+[info ] tls_read_ecall:00900                   exit <= TLS_Read_ecall exit with ret:10573, [Server State : 16].
+[info ] DataFromTLS:05076                      TLS_Read_ecall end, sgx status:0x0, retval:10573, g_onekeyImageHasSet:0, pack len:10602, pack type = 0xb
+[debug] set_mode:00577                         --- g_halcontext.mode = GF_IMAGE_MODE
+[debug] DataFromTLS:05113                      --- TLS_read_enclave end retval = 10573
+[debug] DataFromTLS:05129                      exit
+[debug] device_data_analyze:01868              got data for GF_IMAGE_MODE
+[debug] MilanEvtInterruptWorkItem:05155        exit
+[info ] device_data_analyze:01874              is_buffer_empty_ecall, sgx status: 0x0, ret: 0
+[debug] device_data_analyze:01885              ------ got image ----
+[info ] device_data_analyze:01893              get_frame_buffer_ecall, sgx status: 0x0
+[info ] device_data_analyze:01896              clear_buffer_ecall, sgx status: 0x0
+[debug] device_data_analyze:01899              signal HANDLE_IMAGE
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] gf_get_oneframe:05543                  <= exit with ret(BOOL):1.
+[info ] gf_update_all_base:05676               to get fdt base 2
+[debug] gf_get_fdtbase:05483                   start
+[info ] ChicagoHUSetMode:00432                 enter, Mode 3, Type 3, base_type 1
+[info ] ChicagoHUSetMode:00460                 current fdt down mode 0
+[info ] ChicagoHUSetMode:00501                 setmode: Fdt manual
+[debug] ChicagoHUSetMode:00526                 switch to FDT mode 3(1Down2Up3Manual)
+[debug] ChicagoHUSetMode:00527                 base data sent::0x80b580c880a980ba80a880ba
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x3-3-0xe-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x36 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0x36
+[trace] get_msg_data:04350                     get ack for set fdt manual, current fdt dowm mode:0
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 20, checksum: 180 and first 5 bytes: 0x36 0x11 0x0 0x0 0x1
+[debug] SpiSendDataToDevice:02208              exit
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0x3-0x3-0x0-0x11-1
+[debug] data_from_device:03660                 --- cmd: fdt
+[debug] chicagoHUget_fdtdata:00638             ChicagoIrqStatus:0x100
+[info ] chicagoHUget_fdtdata:00688             IRQ for fdt-manual, get fdt-up base, current mode is fdt-manual, touchflag 0x0
+[info ] chicagoHUget_fdtdata:00692             clear_buffer_ecall, sgx status: 0x0
+[debug] chicagoHUget_fdtdata:00695             received fdt base::0x6c0193015401750151017401
+[info ] chicagoHUget_fdtdata:00708             get fdt-down base, current mode is fdt-manual
+[debug] gfCheckFDTBase:00756                   fdt base:0x6c0193015401750151017401
+[debug] gfFDTDownbase:00789                    fdt_downbase[0]:0xb680
+[debug] gfFDTDownbase:00789                    fdt_downbase[1]:0xc980
+[debug] gfFDTDownbase:00789                    fdt_downbase[2]:0xaa80
+[debug] gfFDTDownbase:00789                    fdt_downbase[3]:0xba80
+[debug] gfFDTDownbase:00789                    fdt_downbase[4]:0xa880
+[debug] gfFDTDownbase:00789                    fdt_downbase[5]:0xba80
+[debug] device_data_analyze:01928              GF_FDT_MANUAL start
+[debug] device_data_analyze:01933              signal HANDLE_MANU
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] gf_get_fdtbase:05498                   success
+[info ] gf_update_all_base:05684               2 finshed
+[debug] gf_update_all_base:05711               before calc real fdt base::0x6c01930154017501510174010000000000000000000000000000000000000000
+[debug] gf_update_all_base:05713               after calc real fdt base::0xb6b6c9c9aaaababaa8a8baba0000000000000000000000000000000000000000
+[info ] gf_update_all_base:05723               base_exist:1, base_valid:0, base_save_to_file:0
+[debug] gf_update_all_base_ecall:00683         start base_exist 1, base_valid 0:1, save_to_file 0
+[debug] FDT_UpdateBaseStatus:00793             curRet:2
+[debug] FDT_UpdateBaseStatus:00794             gPreRet:1
+[debug] gf_update_all_base_ecall:00736         start base_exist 1, base_valid 0:1, save_to_file 1, imageret 2 2
+[info ] gf_update_all_base:05726               gf_update_all_base_ecall, sgx status: 0x0, ret: 0, base_exist:1, base_valid:0, base_save_to_file:1
+[info ] gf_update_all_base:05742               save base to file
+[debug] get_basesize_ecall:00529               seal len 3200:3272, 10240:10312
+[info ] gf_savebaseTofile:05776                get_basesize_ecall, sgx status: 0x0, nav_buff_size:3272, imagebase_size:10312
+[debug] gf_savebaseTofile:05790                nav buffer size:3200 buffer size:10240
+[debug] goodix_sgx_aes_seal:00134              way 1, passed len 3200:3272
+[debug] goodix_sgx_aes_seal:00165              seal len 3200:3272
+[debug] goodix_sgx_aes_seal:00134              way 1, passed len 10240:10312
+[debug] goodix_sgx_aes_seal:00165              seal len 10240:10312
+[debug] gf_savebaseTofile_ecall:00564          goodix seal 0x0 3272:3272, 0x0 10312:10312
+[info ] gf_savebaseTofile:05803                gf_savebaseTofile_ecall, sgx status: 0x0, nav_buff_size:3272, imagebase_size:10312
+[info ] gf_savebaseTofile:05825                write 13664-13664 bytes to base file
+[debug] gf_savebaseTofile:05846                exit size:13664(dec)
+[info ] gf_update_all_base:05759               exit, ren = 1
+[debug] device_check_imagebase_exist:05401     update all base suc, Set FDT normal base
+[info ] ChicagoHUSetMode:00432                 enter, Mode 3, Type 1, base_type 1
+[info ] ChicagoHUSetMode:00460                 current fdt down mode 0
+[info ] ChicagoHUSetMode:00476                 setmode: Fdt down
+[debug] ChicagoHUSetMode:00526                 switch to FDT mode 1(1Down2Up3Manual)
+[debug] ChicagoHUSetMode:00527                 base data sent::0x80b680c980aa80ba80a880ba
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x3-1-0xe-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x32 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0x32
+[trace] get_msg_data:04342                     get ack for set fdt down, current fdt dowm mode:1
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[info ] InitThread:01154                       Init: update all base have done: ret 1, base 1
+[debug] InitThread:01190                       to set sleep mode
+[debug] set_state:00679                        to set state from 1 to 3
+[info ] ChicagoHUSetMode:00432                 enter, Mode 6, Type 0, base_type 0
+[info ] ChicagoHUSetMode:00460                 current fdt down mode 0
+[info ] ChicagoHUSetMode:00555                 setmode: sleep
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x6-0-0x2-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x60 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-3
+[trace] get_msg_data:04327                     get ack for cmd: 0x60
+[trace] get_msg_data:04362                     get ack for set sleep, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] set_state:00679                        to set state from 3 to 1
+[warn ] InitThread:01206                       !!Init: Initialization done successfully
+[info ] InitThread:01213                       --- Init: end
+[info ] MilanEvtDeviceD0Exit:04595             target state: 4, power action: 0
+[warn ] ClearPOVImage:03806                    no pov data
+[debug] clear_submit_delay:04032               enter
+[info ] MilanEvtDeviceD0Exit:04607             enter S0 idle, current fdt down mode 0, fdt_is_down:0
+[info ] MilanEvtDeviceD0Entry:04471            entry, prev state: 4(4-D3,5-D3Final), power action: 0, driver version 1.1.141.40
+[info ] MilanEvtDeviceD0Entry:04482            resume from S0 idle
+[debug] clear_submit_delay:04032               enter
+[debug] OnGetAttributes:01688                  entry
+[info ] sessionThread:00124                    system is locked
+[debug] OnGetAttributes:01767                  exit
+[debug] OnGetSensorInfo:02720                  Entry
+[info ] OnGetSensorInfo:02775                  got sensor info, chipid:0x2504, sensorType:12, col:80, row:64
+[debug] ReqOnDHServerSteps:02661               =>Entry
+[debug] ReqOnDHServerSteps:02707               <=Exit
+[debug] ReqOnDHServerSteps:02661               =>Entry
+[debug] ReqOnDHServerSteps:02707               <=Exit
+[debug] ReqOnDHServerSteps:02661               =>Entry
+[debug] ReqOnDHServerSteps:02707               <=Exit
+[debug] OnGetEnclaveCommStatus:03351           entry
+[debug] OnGetEnclaveCommStatus:03382           Enclave Attestation Success
+[warn ] milanFusbEvtIoDeviceControl:00229      not support 0x440028
+[trace] OnActivate:03213                       entry
+[info ] OnActivate:03256                       The last OnActivate done.
+[debug] OnActivate:03259                       activate flag 1
+[info ] OnActivate:03314                       Driver not support continue unlock.
+[debug] OnActivate:03330                       Continue-unlock switch is off
+[debug] OnActivate:03336                       exit with activate flag 1
+[debug] OnGetAttributes:01688                  entry
+[debug] OnGetAttributes:01767                  exit
+[debug] OnCaptureData:02196                    request:FFFFFDEB98539008
+[debug] OnCaptureData:02281                    !!!!CompletePendingRequest outputbuffer size: 0xe980
+[debug] OnCaptureData:02196                    request:FFFFFDEB985385B8
+[debug] OnCaptureData:02286                    Purpose=2, Type=1025, Owner=27, Flags=0x20
+[info ] _ForFRRFARTestSkipCaptureData:01126    enter
+[info ] _ForFRRFARTestSkipCaptureData:01145    exit
+[info ] OnCaptureData:02367                    ******** Register CaptureFramedone for capture a frame ********
+[debug] OnCaptureData:02378                    to wait init done
+[debug] OnCaptureData:02380                    wait init done
+[info ] OnCaptureData:02406                    OnActivate done.
+[info ] OnCaptureData:02408                    FDT DOWN info, activate 1 fdt_is_down 0, current fdt down mode 0
+[info ] WakeupMCU:00093                        start
+[info ] WakeupMCU:00112                        exit
+[info ] OnCaptureData:02421                    finger off, to switch to FDT DOWN
+[debug] set_state:00679                        to set state from 1 to 3
+[info ] ChicagoHUSetMode:00432                 enter, Mode 3, Type 1, base_type 1
+[info ] ChicagoHUSetMode:00460                 current fdt down mode 0
+[info ] ChicagoHUSetMode:00476                 setmode: Fdt down
+[debug] ChicagoHUSetMode:00526                 switch to FDT mode 1(1Down2Up3Manual)
+[debug] ChicagoHUSetMode:00527                 base data sent::0x80b680c980aa80ba80a880ba
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x3-1-0xe-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x32 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-3
+[trace] get_msg_data:04327                     get ack for cmd: 0x32
+[trace] get_msg_data:04342                     get ack for set fdt down, current fdt dowm mode:1
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] set_state:00679                        to set state from 3 to 1
+[info ] OnCaptureData:02490                    exit
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 20, checksum: 180 and first 5 bytes: 0x32 0x11 0x0 0x2 0x0
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0x3-0x1-0x0-0x11-1
+[debug] data_from_device:03660                 --- cmd: fdt
+[debug] chicagoHUget_fdtdata:00638             ChicagoIrqStatus:0x2
+[info ] chicagoHUget_fdtdata:00647             IRQ for fdt-down, get fdt-up base, current mode is fdt-down, touchflag 0x3f
+[info ] chicagoHUget_fdtdata:00651             clear_buffer_ecall, sgx status: 0x0
+[debug] chicagoHUget_fdtdata:00654             received fdt base::0xec002e01fb000b01cf00f300
+[info ] gfFDTUPbase:00810                      iSecondFlag 0, need_fdt_up_twice 0, diff_use 33, touchflag 0x3f
+[debug] gfCheckFDTBase:00756                   fdt base:0xec002e01fb000b01cf00f300
+[info ] gfFDTUPbase:00879                      fdt_upbase[0]:0x9780, original 0xb5b5
+[info ] gfFDTUPbase:00879                      fdt_upbase[1]:0xb880, original 0xc9c9
+[info ] gfFDTUPbase:00879                      fdt_upbase[2]:0x9e80, original 0xaaaa
+[info ] gfFDTUPbase:00879                      fdt_upbase[3]:0xa680, original 0xbaba
+[info ] gfFDTUPbase:00879                      fdt_upbase[4]:0x8880, original 0xa9a9
+[info ] gfFDTUPbase:00879                      fdt_upbase[5]:0x9a80, original 0xbaba
+[info ] device_fdtdata_analyze:06467           receive fdt down......fdt_is_down:1, fdt down mode set to 1
+[info ] device_fdtdata_analyze:06476           submit delay 0, monitor state 1, sesssion state 7
+[trace] gf_captureFingerdata:06090             entry
+[info ] gf_captureFingerdata:06108             get_datasize_ecall, sgx status: 0x0, image_size:20544, imagebase_size:10272
+[info ] gf_get_oneframe:05530                  enter
+[debug] gf_get_oneframe:05533                  g_halcontext.sensor_ops.SetMode:0x00007FF9D8F0C410.
+[info ] ChicagoHUSetMode:00432                 enter, Mode 2, Type 0, base_type 0
+[info ] ChicagoHUSetMode:00460                 current fdt down mode 0
+[info ] ChicagoHUSetMode:00467                 setmode: Image
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x2-0-0x2-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x20 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0x20
+[trace] get_msg_data:04332                     get ack for set image, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00450          timeout, g_d0exit_start = 0
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 11, len: 10602, checksum: 67 and first 5 bytes: 0x17 0x3 0x3 0x29 0x65
+[debug] MilanEvtInterruptWorkItem:05143        enter
+[debug] DataFromTLS:05009                      enter
+[debug] DataFromTLS:05057                      ---- pack len: 10602
+[debug] SpiSendDataToDeviceLock:00450          timeout, g_d0exit_start = 0
+[info ] tls_read_ecall:00879                   enter => tls_read_ecall
+[info ] RecvTLSPackage:04929                   bytes to read: 5, bytes left: 10602
+[info ] RecvTLSPackage:04944                   bytes read: 5, bytes left: 10597
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 5 bytes data.]
+[info ] RecvTLSPackage:04929                   bytes to read: 10597, bytes left: 10597
+[info ] RecvTLSPackage:04944                   bytes read: 10597, bytes left: 0
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 10597 bytes data.]
+[debug] tlsapp_set_tls_state_ocall:00508       input parameter state:16.
+[debug] tlsapp_set_tls_state_ocall:00515       TLS now IN handshake state:16.
+[info ] tlslib_read:00581                      <= tlslib_read exit with ret:10573 tls server state:16.
+[debug] SpiSendDataToDeviceLock:00450          timeout, g_d0exit_start = 0
+[info ] tls_read_ecall:00893                   tlslib_read OK Got:10573 bytes data. BEFORE call data_from_device_enclave
+[debug] data_from_device_enclave:00997         =>Entry
+[debug] data_from_device_enclave:01026         Cmd:0x20, Cmd0:0x02, Cmd1:0x00, Cmd2:0x00, Length:10570
+[debug] chicagoHUget_rawdata:00071             =>Entry
+[debug] chicagoHUget_rawdata:00081             source data len:10560
+[debug] ChicagoHUDataRegroup:00062             Regroup pixels:5120
+[debug] chicagoHUget_rawdata:00099             1 <=Exit
+[debug] data_from_device_enclave:01134         crc check ok
+[debug] data_from_device_enclave:01144         <=Exit
+[info ] tls_read_ecall:00895                   AFTER call data_from_device_enclave
+[info ] tls_read_ecall:00900                   exit <= TLS_Read_ecall exit with ret:10573, [Server State : 16].
+[debug] SpiSendDataToDeviceLock:00450          timeout, g_d0exit_start = 0
+[info ] DataFromTLS:05076                      TLS_Read_ecall end, sgx status:0x0, retval:10573, g_onekeyImageHasSet:0, pack len:10602, pack type = 0xb
+[debug] set_mode:00577                         --- g_halcontext.mode = GF_IMAGE_MODE
+[debug] DataFromTLS:05113                      --- TLS_read_enclave end retval = 10573
+[debug] device_data_analyze:01868              got data for GF_IMAGE_MODE
+[debug] DataFromTLS:05129                      exit
+[info ] device_data_analyze:01874              is_buffer_empty_ecall, sgx status: 0x0, ret: 0
+[debug] MilanEvtInterruptWorkItem:05155        exit
+[debug] device_data_analyze:01885              ------ got image ----
+[info ] device_data_analyze:01893              get_frame_buffer_ecall, sgx status: 0x0
+[info ] device_data_analyze:01896              clear_buffer_ecall, sgx status: 0x0
+[debug] device_data_analyze:01899              signal HANDLE_IMAGE
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] gf_get_oneframe:05543                  <= exit with ret(BOOL):1.
+[info ] gf_captureFingerdata:06135             CaptureTime: 375ms
+[debug] gf_get_first_image_ecall:00848         befor seal = 0x63, after seal = 0xbc
+[debug] gf_get_first_image_ecall:00848         befor seal = 0x6, after seal = 0xec
+[debug] gf_get_first_image_ecall:00852         wrapper seal 0x0 10240:10272
+[debug] gf_get_first_image_ecall:00860         Image_isTouchedByFinger imageret = 1
+[info ] gf_captureFingerdata:06165             gf_get_first_image_ecall, sgx status: 0x0, ret: 1(imageret 1)
+[debug] gf_captureFingerdata:06169             imageret = 1
+[debug] gf_captureFingerdata:06182             Image_isTouchedByFinger: finger down
+[debug] gf_get_imagebase_ecall:00966           wrapper seal 0x0 10240:10272
+[debug] gf_get_imagebase_ecall:00968           goodix_AES_encrypt_enclave err = 0x0
+[debug] gf_get_imagebase_ecall:00971           befor seal = 0x3f, after seal = 0xf7
+[debug] gf_get_imagebase_ecall:00971           befor seal = 0xa, after seal = 0xe0
+[info ] gf_captureFingerdata:06201             gf_get_imagebase_ecall, sgx status: 0x0, ret: 0
+[debug] gf_captureFingerdata:06231             ***********to complete capture request, display on***********
+[debug] CaptureFramedone:02545                 Entry: update_flag 1, pov_flag 0, MonitorOff_flag:0, valid_flag: 16, data size:10240
+[info ] CaptureFramedone:02557                 get_datasize_ecall, sgx status: 0x0, image_size:20544, &imagebase_size: 10272
+[debug] CaptureFramedone:02560                 after seal rawdata = 0xbc, imagebase = 0xf7
+[debug] CaptureFramedone:02560                 after seal rawdata = 0xec, imagebase = 0xe0
+[info ] CaptureFramedone:02588                 ******** CompletePendingRequest ********
+[debug] CompletePendingRequest:02625           status:0x0
+[debug] gf_captureFingerdata:06304             g_complete successed
+[info ] ChicagoHUSetMode:00432                 enter, Mode 3, Type 2, base_type 1
+[info ] ChicagoHUSetMode:00460                 current fdt down mode 0
+[info ] ChicagoHUSetMode:00489                 setmode: Fdt up
+[debug] ChicagoHUSetMode:00526                 switch to FDT mode 2(1Down2Up3Manual)
+[debug] ChicagoHUSetMode:00527                 base data sent::0x809780b8809e80a68088809a
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x3-2-0xe-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x34 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0x34
+[trace] get_msg_data:04346                     get ack for set fdt up, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] OnGetGoodixSgxAesKeyInfo:02856         Entry
+[debug] get_goodix_aes_key_ecall:00252         switch way len 1:1:48,
+[debug] get_goodix_aes_key_ecall:00256         wrapper seal 0x0 48:80
+[info ] get_goodix_aes_key_ecall:00263         wrapped len 80
+[info ] OnGetGoodixSgxAesKeyInfo:02902         260:260, sgx status: 0x0, intret: 0, key len: 80
+[debug] OnGetDeviceInfo:02789                  Entry
+[info ] OnGetDeviceInfo:02833                  264 == 264 ?
+[info ] OnGetDeviceInfo:02839                  got device info, size 264 project_type:3, driver_version:1.1.141.40,  firmware_version: GF_ST411SEC_APP_14115
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 20, checksum: 180 and first 5 bytes: 0x34 0x11 0x0 0x0 0x2
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0x3-0x2-0x0-0x11-1
+[debug] data_from_device:03660                 --- cmd: fdt
+[debug] chicagoHUget_fdtdata:00638             ChicagoIrqStatus:0x200
+[info ] chicagoHUget_fdtdata:00722             IRQ for fdt-up, get fdt-down base, current mode is fdt-up, touchflag 0x0
+[debug] chicagoHUget_fdtdata:00723             received fdt base::0x65018c013b01670136016901
+[debug] gfCheckFDTBase:00756                   fdt base:0x65018c013b01670136016901
+[debug] gfFDTDownbase:00789                    fdt_downbase[0]:0xb280
+[debug] gfFDTDownbase:00789                    fdt_downbase[1]:0xc680
+[debug] gfFDTDownbase:00789                    fdt_downbase[2]:0x9d80
+[debug] gfFDTDownbase:00789                    fdt_downbase[3]:0xb380
+[debug] gfFDTDownbase:00789                    fdt_downbase[4]:0x9b80
+[debug] gfFDTDownbase:00789                    fdt_downbase[5]:0xb480
+[debug] device_fdtdata_analyze:06426           receive fdt up or reset... 0x2, 2UP,9Reset,current fdt down mode 0
+[info ] gf_check_baseisvalid:05858             enter, base_valid:0
+[info ] gf_check_baseisvalid:05876             to get frame
+[info ] gf_get_oneframe:05530                  enter
+[debug] gf_get_oneframe:05533                  g_halcontext.sensor_ops.SetMode:0x00007FF9D8F0C410.
+[info ] ChicagoHUSetMode:00432                 enter, Mode 2, Type 0, base_type 0
+[info ] ChicagoHUSetMode:00460                 current fdt down mode 0
+[info ] ChicagoHUSetMode:00467                 setmode: Image
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x2-0-0x2-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x20 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0x20
+[trace] get_msg_data:04332                     get ack for set image, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] OnIdentifyFinished:02978               enter switch 1, delay time 3, submit delay 0
+[info ] OnIdentifyFinished:02996               set submit delay
+[debug] gf_submit_delay_timer:04060            enter
+[trace] gf_submit_delay_timer:04093            exit
+[debug] OnIdentifyFinished:03008               Exit
+[debug] OnCaptureData:02196                    request:FFFFFDEB98538DF8
+[debug] OnCaptureData:02286                    Purpose=2, Type=1025, Owner=27, Flags=0x20
+[info ] _ForFRRFARTestSkipCaptureData:01126    enter
+[info ] _ForFRRFARTestSkipCaptureData:01145    exit
+[info ] OnCaptureData:02367                    ******** Register CaptureFramedone for capture a frame ********
+[debug] OnCaptureData:02378                    to wait init done
+[debug] OnCaptureData:02380                    wait init done
+[info ] OnCaptureData:02406                    OnActivate done.
+[info ] OnCaptureData:02408                    FDT DOWN info, activate 0 fdt_is_down 1, current fdt down mode 0
+[info ] OnCaptureData:02447                    Driver not support continue unlock.
+[info ] OnCaptureData:02490                    exit
+[debug] SpiSendDataToDeviceLock:00450          timeout, g_d0exit_start = 0
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 11, len: 10602, checksum: 67 and first 5 bytes: 0x17 0x3 0x3 0x29 0x65
+[debug] MilanEvtInterruptWorkItem:05143        enter
+[debug] DataFromTLS:05009                      enter
+[debug] DataFromTLS:05057                      ---- pack len: 10602
+[info ] tls_read_ecall:00879                   enter => tls_read_ecall
+[info ] RecvTLSPackage:04929                   bytes to read: 5, bytes left: 10602
+[info ] RecvTLSPackage:04944                   bytes read: 5, bytes left: 10597
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 5 bytes data.]
+[info ] RecvTLSPackage:04929                   bytes to read: 10597, bytes left: 10597
+[info ] RecvTLSPackage:04944                   bytes read: 10597, bytes left: 0
+[info ] tls_callback_recv:00693                [tls_callback_recv recv 10597 bytes data.]
+[debug] tlsapp_set_tls_state_ocall:00508       input parameter state:16.
+[debug] tlsapp_set_tls_state_ocall:00515       TLS now IN handshake state:16.
+[info ] tlslib_read:00581                      <= tlslib_read exit with ret:10573 tls server state:16.
+[info ] tls_read_ecall:00893                   tlslib_read OK Got:10573 bytes data. BEFORE call data_from_device_enclave
+[debug] data_from_device_enclave:00997         =>Entry
+[debug] data_from_device_enclave:01026         Cmd:0x20, Cmd0:0x02, Cmd1:0x00, Cmd2:0x00, Length:10570
+[debug] chicagoHUget_rawdata:00071             =>Entry
+[debug] chicagoHUget_rawdata:00081             source data len:10560
+[debug] ChicagoHUDataRegroup:00062             Regroup pixels:5120
+[debug] chicagoHUget_rawdata:00099             1 <=Exit
+[debug] data_from_device_enclave:01134         crc check ok
+[debug] data_from_device_enclave:01144         <=Exit
+[info ] tls_read_ecall:00895                   AFTER call data_from_device_enclave
+[info ] tls_read_ecall:00900                   exit <= TLS_Read_ecall exit with ret:10573, [Server State : 16].
+[info ] DataFromTLS:05076                      TLS_Read_ecall end, sgx status:0x0, retval:10573, g_onekeyImageHasSet:0, pack len:10602, pack type = 0xb
+[debug] set_mode:00577                         --- g_halcontext.mode = GF_IMAGE_MODE
+[debug] DataFromTLS:05113                      --- TLS_read_enclave end retval = 10573
+[debug] DataFromTLS:05129                      exit
+[debug] MilanEvtInterruptWorkItem:05155        exit
+[debug] device_data_analyze:01868              got data for GF_IMAGE_MODE
+[info ] device_data_analyze:01874              is_buffer_empty_ecall, sgx status: 0x0, ret: 0
+[debug] device_data_analyze:01885              ------ got image ----
+[info ] device_data_analyze:01893              get_frame_buffer_ecall, sgx status: 0x0
+[info ] device_data_analyze:01896              clear_buffer_ecall, sgx status: 0x0
+[debug] device_data_analyze:01899              signal HANDLE_IMAGE
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] gf_get_oneframe:05543                  <= exit with ret(BOOL):1.
+[info ] gf_check_baseisvalid:05888             gf_get_navbase
+[debug] gf_get_navbase:05462                   get 12(3MilanL12MilanHu) nav data
+[info ] ChicagoHUSetMode:00432                 enter, Mode 5, Type 0, base_type 0
+[info ] ChicagoHUSetMode:00460                 current fdt down mode 0
+[info ] ChicagoHUSetMode:00582                 setmode: nav
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x5-0-0x2-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x50 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0x50
+[trace] get_msg_data:04358                     get ack for set nav, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 3313, checksum: 157 and first 5 bytes: 0x50 0xee 0xc 0xa6 0xb0
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0x5-0x0-0x0-0xcee-1
+[debug] data_from_device:03679                 --- recv nav data......length:3310
+[debug] data_from_device:03682                 data_from_device Len = 3304
+[debug] ChicagoHUDataRegroup:00062             Regroup pixels:2200
+[debug] data_from_device:03690                 data_from_device get_navdata ren = 1
+[debug] data_from_device:03695                 NAV crc check ok
+[debug] device_data_analyze:01902              got data for GF_NAV_MODE
+[info ] device_data_analyze:01905              is_buffer_empty_ecall, sgx status: 0x0, ret: 0
+[info ] device_data_analyze:01917              get_navbase_buffer_ecall, sgx status: 0x0
+[info ] device_data_analyze:01920              clear_buffer_ecall, sgx status: 0x0
+[debug] device_data_analyze:01923              signal HANDLE_NAV
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[info ] gf_check_baseisvalid:05896             imagebase_needupdate 0 0, base_valid 0
+[debug] gf_check_baseisvalid_ecall:00766       start, base_valid 0:1, imagebase_needupdate 0
+[debug] FDT_UpdateBaseStatus:00793             curRet:2
+[debug] FDT_UpdateBaseStatus:00794             gPreRet:2
+[debug] gf_check_baseisvalid_ecall:00792       start, base_valid 1:1, imagebase_needupdate 0, imageret 2 2
+[info ] gf_check_baseisvalid:05899             gf_check_baseisvalid_ecall, sgx status: 0x0, ret: 1, imagebase_needupdate 0 0, base_valid:1
+[info ] gf_check_baseisvalid:05907             save base to file
+[debug] get_basesize_ecall:00529               seal len 3200:3272, 10240:10312
+[info ] gf_savebaseTofile:05776                get_basesize_ecall, sgx status: 0x0, nav_buff_size:3272, imagebase_size:10312
+[debug] gf_savebaseTofile:05790                nav buffer size:3200 buffer size:10240
+[debug] goodix_sgx_aes_seal:00134              way 1, passed len 3200:3272
+[debug] goodix_sgx_aes_seal:00165              seal len 3200:3272
+[debug] goodix_sgx_aes_seal:00134              way 1, passed len 10240:10312
+[debug] goodix_sgx_aes_seal:00165              seal len 10240:10312
+[debug] gf_savebaseTofile_ecall:00564          goodix seal 0x0 3272:3272, 0x0 10312:10312
+[info ] gf_savebaseTofile:05803                gf_savebaseTofile_ecall, sgx status: 0x0, nav_buff_size:3272, imagebase_size:10312
+[info ] gf_savebaseTofile:05825                write 13664-13664 bytes to base file
+[debug] gf_savebaseTofile:05846                exit size:13664(dec)
+[info ] device_fdtdata_analyze:06457           request pending after check: to FDT DOWN
+[info ] ChicagoHUSetMode:00432                 enter, Mode 3, Type 1, base_type 1
+[info ] ChicagoHUSetMode:00460                 current fdt down mode 0
+[info ] ChicagoHUSetMode:00476                 setmode: Fdt down
+[debug] ChicagoHUSetMode:00526                 switch to FDT mode 1(1Down2Up3Manual)
+[debug] ChicagoHUSetMode:00527                 base data sent::0x80b280c6809d80b3809b80b4
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x3-1-0xe-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x32 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-1
+[trace] get_msg_data:04327                     get ack for cmd: 0x32
+[trace] get_msg_data:04342                     get ack for set fdt down, current fdt dowm mode:1
+[info ] gfOnCancel:02502                       entry
+[info ] gfOnCancel:02539                       exit
+[debug] clear_submit_delay:04032               enter
+[info ] sessionThread:00108                    UNLOCK to clear pov data right away
+[warn ] ClearPOVImage:03806                    no pov data
+[trace] OnActivate:03213                       entry
+[info ] OnActivate:03256                       The last OnActivate done.
+[debug] OnActivate:03259                       activate flag 0
+[debug] OnActivate:03275                       to switch to sleep mode
+[debug] set_state:00679                        to set state from 1 to 3
+[info ] ChicagoHUSetMode:00432                 enter, Mode 6, Type 0, base_type 0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[info ] ChicagoHUSetMode:00460                 current fdt down mode 0
+[info ] ChicagoHUSetMode:00555                 setmode: sleep
+[debug] SpiSendDataToDevice:02096              cmd0-cmd1-Len-ackt:0x6-0-0x2-1000(0x0NOP,0x2Ima,0x3FDT(dow/up/man),0x4FF,0x5NAV,0x6Sle,0x7IDL,0x8REG,0x9CHIP,0xAOTHER,0xBMSG,0xCNOTI,0xDTLSCONN,0xEPROD,0xFUPFW)
+[debug] MilanEvtInterruptIsr:04901             spi pack :type: 10, len: 6, checksum: 166 and first 5 bytes: 0xb0 0x3 0x0 0x60 0x1
+[debug] data_from_device:03587                 cmd0-cmd1-cmd2-len-state: 0xb-0x0-0x0-0x3-3
+[trace] get_msg_data:04327                     get ack for cmd: 0x60
+[trace] get_msg_data:04362                     get ack for set sleep, current fdt dowm mode:0
+[debug] SpiSendDataToDevice:02208              exit
+[debug] SpiSendDataToDeviceLock:00485          SpiSendDataToDeviceLock exit
+[debug] SendDataToDeviceLock:00321             exit, ret = 1
+[debug] set_state:00679                        to set state from 3 to 1
+[debug] OnActivate:03282                       FDT DOWN info, fdt_is_down 0, current fdt down mode 0
+[debug] OnActivate:03336                       exit with activate flag 0
+[info ] MilanEvtDeviceD0Exit:04595             target state: 4, power action: 0
+[warn ] ClearPOVImage:03806                    no pov data
+[debug] clear_submit_delay:04032               enter
+[info ] MilanEvtDeviceD0Exit:04607             enter S0 idle, current fdt down mode 0, fdt_is_down:0
