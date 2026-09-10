@@ -1,0 +1,139 @@
+### RECOVER  Fri Sep 11 12:26:28 AM CEST 2026  uptime 7198s
+### recover_probe  2026-09-11 00:26:28
+### uptime 7198s
+
+==============================================================================
+== full recipe: long reset + rebind         @ 10000 kHz
+==============================================================================
+  spidev unbind: ok   /dev/spidev1.0 exists=False
+  spidev bind:   /dev/spidev1.0 exists=True
+  -- pads after recovery              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 57 77 00 00 d3
+  RX mcuState               irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+
+==============================================================================
+== full recipe: long reset + rebind         @ 1000 kHz
+==============================================================================
+  spidev unbind: ok   /dev/spidev1.0 exists=False
+  spidev bind:   /dev/spidev1.0 exists=True
+  -- pads after recovery              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 d0 80 00 00 51
+  RX mcuState               irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+
+==============================================================================
+== rebind only                              @ 10000 kHz
+==============================================================================
+  spidev unbind: ok   /dev/spidev1.0 exists=False
+  spidev bind:   /dev/spidev1.0 exists=True
+  -- pads after recovery              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 c9 85 00 00 53
+  RX mcuState               irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+
+==============================================================================
+== rebind only                              @ 1000 kHz
+==============================================================================
+  spidev unbind: ok   /dev/spidev1.0 exists=False
+  spidev bind:   /dev/spidev1.0 exists=True
+  -- pads after recovery              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 c7 8a 00 00 50
+  RX mcuState               irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+
+==============================================================================
+== long reset only (1 s low)                @ 10000 kHz
+==============================================================================
+  -- pads after recovery              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 80 91 00 00 90
+  RX mcuState               irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+
+==============================================================================
+== long reset only (1 s low)                @ 1000 kHz
+==============================================================================
+  -- pads after recovery              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 38 98 00 00 d1
+  RX mcuState               irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+
+==============================================================================
+== reset held across the rebind             @ 10000 kHz
+==============================================================================
+  spidev unbind: ok   /dev/spidev1.0 exists=False
+  spidev bind:   /dev/spidev1.0 exists=True
+  -- pads after recovery              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 f3 9e 00 00 10
+  RX mcuState               irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+
+==============================================================================
+== reset held across the rebind             @ 1000 kHz
+==============================================================================
+  spidev unbind: ok   /dev/spidev1.0 exists=False
+  spidev bind:   /dev/spidev1.0 exists=True
+  -- pads after recovery              
+       pin 41 (GSPI0_CLK) 48:INT34BB:00 GPIO 0x40100102 0x00000040 0x00000010 [LOCKED full]
+       pin 189 (UART0_RXD) 264:INT34BB:00 GPIO 0x44000201 0x00000050 0x00000010 [LOCKED]
+  TX unlockTLS              hdr=a0 06 00 a6 body=d5 03 00 00 00 d3
+  TX mcuConfig              hdr=a0 08 00 a8 body=01 05 00 00 00 00 00 88
+  TX getEvkVersion          hdr=a0 06 00 a6 body=a8 03 00 00 00 ff
+  RX evkVersion             irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX getMcuState            hdr=a0 09 00 a9 body=af 06 00 55 b1 a5 00 00 4b
+  RX mcuState               irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+  TX milanChipId            hdr=a0 09 00 a9 body=82 06 00 00 00 00 04 00 1e
+  RX chipId                 irq=1 hdr=ff ff ff ff len=None  (all-FF: the wire is idle)
+
+==============================================================================
+no valid header under any recovery variant
+==============================================================================

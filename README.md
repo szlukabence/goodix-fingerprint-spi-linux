@@ -32,6 +32,43 @@ month of work on this end.
 
 ---
 
+## Where GXFP51A0 sits in its family
+
+This matters more than anything else here.
+
+| Sensor | Linux status | Project |
+|---|---|---|
+| **GXFP5187** (MateBook X Pro) | ✅ **fully working** — enrol + verify via fprintd, own matcher | [Sigfrodr/libfprint-goodixtls](https://github.com/Sigfrodr/libfprint-goodixtls) |
+| **GDIX51C0** (MateBook 16s) | ✅ **working** libfprint driver — images, enrol | [berkekbgz/libfprint-goodix-spi](https://github.com/berkekbgz/libfprint-goodix-spi) |
+| **GDIX51C0** | ✅ PoC — scan, enrol, delete | [lexakimov/goodix51c0_spi-reversing](https://github.com/lexakimov/goodix51c0_spi-reversing) |
+| **GXFP51A0** | ❌ **no one, on any machine** | this repo, and the three below |
+
+Four independent GXFP51A0 machines, four independent investigators, all reading
+`0xff`:
+
+- this MateBook 13 2020
+- [GodsQuantum](https://github.com/GodsQuantum/huawei-matebook-fingerprint-linux), MateBook 13 2021 — libfprint integration, deep controller-side analysis
+- [PopulusYang](https://github.com/PopulusYang/GXFP51A0-driver-failed), MateBook 13 WRTB — repo named "driver-failed"
+- a further report on [goodix-fp-dump](https://github.com/goodix-fp-linux-dev/goodix-fp-dump/issues)
+
+Different boards, different methods, identical dead end — while two sibling
+parts in the same family are finished and in daily use. **That pattern says
+GXFP51A0 is structurally different, not that four people made the same
+mistake.**
+
+### Everything after the first reply is already solved
+
+The TLS/PSK layer was long assumed to be the wall for this family, gated behind
+SGX. It isn't. Sigfrodr's working 5187 driver reads the PSK **out of the
+sensor's own RAM** with the `0xF2` memory command — 48 bytes, no Intel ME, no
+SGX, no IAP.
+
+So config upload, TLS, image capture, decoding, enrolment, matching and fprintd
+integration all exist in working code on sibling silicon. **The entire remaining
+problem for GXFP51A0 is getting one byte back.**
+
+---
+
 ## What was previously believed, and what is actually true
 
 The public state of the art for this sensor family got two important things

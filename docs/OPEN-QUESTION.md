@@ -37,6 +37,8 @@ Do not re-test these.
 | The BIOS pad lock blocking our GPIO writes | The pad obeys writes exactly (`0x44000201` ↔ `0x44000200`) despite the `[LOCKED]` flag. The output buffer is enabled. |
 | The enable line not reaching the sensor | **Disproven — it does.** See below. |
 | Reset polarity / pulse shape / settle time | Ten combinations tested (5 reset shapes × 2 speeds), including the exact sequence from a working sibling implementation. All returned `ff ff ff ff`. |
+| The host controller's spidev state being wedged | Sigfrodr documents a wedge needing "a long reset AND the detach/reattach of the spidev kernel driver". Tested 4 recovery shapes × 2 speeds; spidev genuinely detached and reattached each time. All 8 returned `ff ff ff ff`. |
+| A reset shape the working drivers use that we don't | Sigfrodr's **working** 5187 driver resets LOW 10 ms → HIGH → 120 ms settle — the same shape we already test. |
 
 ## What is proven to work
 
@@ -103,15 +105,37 @@ or at test points near it.
 - Probe with the machine's own ground reference, and do not back-power the
   sensor board from the analyser.
 
+## Why this is worth someone's evening
+
+Two sibling sensors in this family are **finished** on Linux — GXFP5187 and
+GDIX51C0 both enrol and verify through fprintd today. GXFP51A0 is the only one
+nobody has ever got a byte out of, across four machines and four investigators.
+
+And everything downstream of that first byte is already written. The TLS/PSK
+layer that was assumed to be the wall is not: Sigfrodr's working 5187 driver
+reads the PSK **out of the sensor's RAM** via the `0xF2` memory command, 48
+bytes, with no Intel ME, SGX or IAP involved.
+
+So this is not a project needing months of protocol work. It needs **one
+measurement**, after which there is a working reference implementation for
+every remaining stage.
+
 ## If it turns out the sensor does answer
 
-Then the remaining work is not protocol work — it is the security layer, and
-there is a map for it:
+The path from there is mapped:
 
 - The sensor's reply path, ACK format and command table are in [PROTOCOL.md](PROTOCOL.md).
 - The TLS/PSK layer, enrolment and image decoding are already solved on the
   sibling part by [lexakimov/goodix51c0_spi-reversing](https://github.com/lexakimov/goodix51c0_spi-reversing).
-- `ProductionOperateKey` exposes **write PMK** and **reset PMK** over the wire —
-  the same trust-on-first-use hook the USB Goodix drivers exploit. Whether this
-  MCU still accepts it unauthenticated is untested. That is the next real
-  question after the sensor talks.
+- The PSK is readable from sensor RAM via `0xF2` on the sibling 5187 (48
+  bytes). `ProductionOperateKey` in this driver also exposes **write PMK** and
+  **reset PMK** over the wire. Our Windows log says `init to const pmk` — a
+  *constant* key, not per-device.
+
+## Related projects
+
+- [Sigfrodr/libfprint-goodixtls](https://github.com/Sigfrodr/libfprint-goodixtls) — **working** GXFP5187 driver. Closest working relative; solved TLS via `0xF2`.
+- [berkekbgz/libfprint-goodix-spi](https://github.com/berkekbgz/libfprint-goodix-spi) — **working** GDIX51C0 libfprint driver. Also ships `re/gfspi_trace.js`, a **Frida** script that instruments `gfspi.dll` at runtime — a software route to capturing real SPI buffers.
+- [lexakimov/goodix51c0_spi-reversing](https://github.com/lexakimov/goodix51c0_spi-reversing) — GDIX51C0 PoC; independently confirms this repo's framing and checksums.
+- [GodsQuantum/huawei-matebook-fingerprint-linux](https://github.com/GodsQuantum/huawei-matebook-fingerprint-linux) — GXFP51A0, same wall, libfprint integration and controller-side analysis.
+- [PeshalaDilshan/OpenGoodixSPI](https://github.com/PeshalaDilshan/OpenGoodixSPI) — kernel driver skeleton for the family.

@@ -10,6 +10,7 @@ target and run it.
 |---|---|
 | `bind-spidev.sh` | Binds the ACPI sensor to `spidev` and keeps the controller awake. Run first. |
 | `refseq.py` | The bring-up sequence, tried under 5 reset shapes × 2 bus speeds, with pad registers dumped at every step. **Start here.** |
+| `recover_probe.py` | Sigfrodr-style recovery (long reset + spidev detach/reattach) then probe. All 8 variants negative here — kept so nobody retests it. |
 | `gxfp.py` | The protocol as a library: framing, checksums, a `Sensor` class. Import this to write your own experiments. |
 | `spidev_raw.py` | Minimal `SPI_IOC_MESSAGE` wrapper. |
 | `gpio_raw.py` | Minimal GPIO character-device (uAPI v2) wrapper. |
