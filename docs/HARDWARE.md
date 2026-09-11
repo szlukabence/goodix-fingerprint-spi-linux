@@ -136,9 +136,21 @@ The device node is minimal: `_ADR`, `_HID`, `_CID`, `_UID`,
 - function 1 → a **2048-byte buffer** mapped from the physical address in the
   NVS variable `FPAD`
 
-This is how the platform hands the OS the results of its pre-boot fingerprint
-work — on this laptop, pressing the power button both powers on and reads your
-finger, and you land logged in without touching the sensor again.
+It is tempting to read this as the platform handing the OS the results of
+pre-boot fingerprint work — this laptop advertises power-on-and-login, and in
+practice you do land logged in without touching the sensor a second time.
+**The evidence does not support that reading.**
+
+- The UEFI firmware contains fingerprint modules (`OemFPDxe`, `OemFPSmm`,
+  `FingerPrintSwtitch`), but disassembly shows **no MMIO, no port I/O, no SPI or
+  GPIO protocol, and none of the Goodix protocol constants**. They consume only
+  SMM base / software-SMI dispatch / SMM access — a policy and setup-switch
+  layer, not a sensor driver. The firmware never talks to this sensor.
+- **Windows never calls `_DSM`** in a full successful session, so nothing
+  collects whatever is in the buffer.
+
+So this is more likely factory-provisioned per-device data than a capture
+result, and the power-on-login behaviour remains unexplained.
 
 Contents on this machine: 399 non-zero bytes. Roughly `0x000`–`0x04f` of
 per-device configuration, then two 16-byte descriptors at `0x200` and `0x210`
