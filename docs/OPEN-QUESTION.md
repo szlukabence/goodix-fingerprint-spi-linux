@@ -44,6 +44,7 @@ Do not re-test these.
 | **Our own receive path being broken** | **Positive control**: spidev `SPI_LOOP` (SSCR1 LBM) loops TX→RX inside the SSP. A 10-byte pattern came back byte-perfect on the same open device with the same ioctls, while a normal transfer returns all-`ff`. The receive engine, RX FIFO, kernel driver read path and our ioctl usage are all proven good — and the clock genuinely runs. |
 | Frame structure, command order, preamble, dummy read byte | 48 combinations tested, drawn from **both** working drivers: one chip-select per frame vs two, with/without the NOP (`GX_AMORCE`) preamble, the documented Windows opening order including `0x96` DriverState Install, clocking `0xFF` vs `0x00` during reads, at both speeds. Every one returned `ff ff ff ff`. Note berkekbgz uses two CS cycles and Sigfrodr uses one, and both work — framing is not decisive. |
 | Chip select never being asserted | `CS_CONTROL` reports `SW_MODE=1`, so software must drive CS by hand. Sampled it from a kernel module that binds to no device (`spisnoop/`) while spidev ran real traffic: 64 clean `0xe003`↔`0xe001` transitions, CS asserted 99% of the time during transfers and 0% when idle, spacing exactly 1024 bytes @ 1 MHz. Framing is correct. |
+| Wrong clock mode, bit order, chip-select polarity or speed | Brute-forced: modes 0–3 × CS active-low/high × 10 MHz, 1 MHz, 400 kHz, 100 kHz, **50 kHz**, with a detector that flags *any* byte that is not `0x00`/`0xff`. All 40 runnable combinations returned `ff` only. 50 kHz is 200× below rated speed — signal integrity would have worked there. (LSB-first is rejected by `pxa2xx-spi`; the controller does not support it.) |
 | The controller being misconfigured | Live registers read from the LPSS BAR: mode 0, 8-bit, correct divider, loopback off, and `CS_CONTROL = 0xe003` — software mode, **CS deasserted**, CS0 selected. |
 | Windows applying hidden settings Linux misses | `ialpss2_spi_cnl.inf` — the INF for our exact controller `PCI\VEN_8086&DEV_02AB` — contains no tuning at all: only a power-management flag, an event-log path and a logging GUID. |
 
@@ -68,6 +69,18 @@ So: the enable line switches *something*. **We have not proven the sensor MCU
 itself responds to anything.**
 
 **Data-in has never carried a single byte, under any condition.**
+
+Everything we know about that line, in one place:
+
+```
+0xff with the sensor powered                  0xff in all four clock modes
+0xff with the sensor unpowered                0xff with chip select inverted
+0xff with the sensor disabled in firmware     0xff from 10 MHz down to 50 kHz
+no host-side pull-up or pull-down configured on the pad
+```
+
+Nothing the host can do, and nothing about the sensor's power or enablement
+state, has ever changed that line by one bit.
 
 ## The host side is fully verified
 
