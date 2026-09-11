@@ -163,3 +163,62 @@ you dump your own, treat them as secrets.
 Worth knowing: **Windows never calls `_DSM`.** Not once in a full successful
 session. Whatever this buffer is for, reading it is not a prerequisite for
 talking to the sensor.
+
+## The enable line gates a rail with ~89 ms of bulk capacitance (measured)
+
+Sweeping the enable-low hold time and watching the interrupt pad's live level at
+7.6 µs resolution gives a constant offset:
+
+| enable held LOW | interrupt line LOW for | difference |
+|---|---|---|
+| 100 ms | 11.2 ms | 88.8 ms |
+| 200 ms | 111.2 ms | 88.8 ms |
+| 400 ms | 311.2 ms | 88.8 ms |
+| 800 ms | 711.2 ms | 88.8 ms |
+| 1600 ms | 1511.2 ms | 88.8 ms |
+
+Constant to one decimal across a 16× range. The line **falls 88.8 ms late and
+rises immediately** (rise faster than 7.6 µs). Slow passive fall, fast active
+rise is a capacitor discharging through a high impedance and then being driven.
+
+**Practical consequence, and it is easy to get wrong:** a short reset pulse does
+not remove power. Anything under ~90 ms leaves the rail above threshold and the
+part is never actually power-cycled. Our own tooling used a 10 ms pulse for a
+long time, which was a no-op.
+
+(For completeness: correcting this did *not* make the sensor respond. Resets of
+300 ms and 1000 ms, and true power cycles with settles of 3 s and 8 s, all still
+return `0xff`. But anyone reproducing this should still use a pulse longer than
+90 ms so the variable is actually being tested.)
+
+## The interrupt line never moves — measured at 7.6 µs
+
+Sampling the interrupt pad's `PADCFG0` register in a tight kernel loop, 395,053
+samples across 3 s, while sending NOP → DriverState Install → GetEvkVersion →
+ChipId → ReadOTP: **exactly two transitions, both from a deliberate rail cut
+used as a built-in control.** The sensor never touched the line.
+
+On Windows the same line pulses once per reply, roughly 16 ms after each
+command (`MilanEvtInterruptIsr`, 333 occurrences). Windows never reads the bus
+blindly — every read happens inside that ISR. We read blind, because there is
+never an interrupt to wait for.
+
+### If you write a kernel probe for these pads, read this first
+
+`ioremap()` on the GPIO community returns a **cached** alias. A single read after
+mapping is correct; reading the same address in a loop returns the first value
+forever. This produces perfectly plausible, completely false data — we recorded
+"100% HIGH, zero transitions" across a deliberate rail cut that a single-shot
+read at the same instant showed as LOW.
+
+Use `ioremap_uc()`. A tell-tale is sample rate: ~130 samples/ms (7.7 µs each) is
+far too slow for genuinely uncached MMIO.
+
+The same caution applies to the GPIO **edge detector** on this board. Because the
+interrupt line sits in its asserted state, `gpiomon` returns whatever edge type
+you ask for at a fixed ~240 µs cadence indefinitely — 37,062 "rising" and zero
+"falling" in 9 seconds. A line must fall before it can rise; that output is an
+artifact of a stuck level, not a signal.
+
+**Put a control inside every measurement window.** A deliberate rail cut, whose
+effect *must* appear, is what caught all three of the artifacts above.
