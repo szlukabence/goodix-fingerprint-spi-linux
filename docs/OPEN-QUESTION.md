@@ -35,29 +35,31 @@ Do not re-test these.
 | Wrong SPI mode / speed / bit order / CS timing | All verified against `_CRS` and swept. |
 | Host pads misconfigured | All six pads decoded from register state and confirmed correct — see [HARDWARE.md](HARDWARE.md). |
 | The BIOS pad lock blocking our GPIO writes | The pad obeys writes exactly (`0x44000201` ↔ `0x44000200`) despite the `[LOCKED]` flag. The output buffer is enabled. |
-| The enable line not reaching the sensor | **Disproven — it does.** See below. |
+| The enable line doing nothing at all | It switches something: the interrupt pad's level follows it. But see the caveat below — this is weaker evidence than it first looks. |
+| The sensor reacting to a finger unprompted | 30 s at 1.1 kHz with a finger repeatedly rested on the sensor: **zero** interrupt transitions, zero pad changes, every SPI read idle. Inconclusive though — finger-detect mode is host-configured in this family, so an unconfigured part may simply not look for fingers. |
 | Reset polarity / pulse shape / settle time | Ten combinations tested (5 reset shapes × 2 speeds), including the exact sequence from a working sibling implementation. All returned `ff ff ff ff`. |
 | The host controller's spidev state being wedged | Sigfrodr documents a wedge needing "a long reset AND the detach/reattach of the spidev kernel driver". Tested 4 recovery shapes × 2 speeds; spidev genuinely detached and reattached each time. All 8 returned `ff ff ff ff`. |
 | A reset shape the working drivers use that we don't | Sigfrodr's **working** 5187 driver resets LOW 10 ms → HIGH → 120 ms settle — the same shape we already test. |
 
-## What is proven to work
+## What the enable line actually tells us
 
-Two of the three wires are known good:
+Driving the enable line changes what the interrupt pad reads, deterministically,
+in both directions:
 
-- **Enable**: driving it changes the sensor module's power state. The interrupt
-  line's level *follows* the enable line's level, every time, in both
-  directions:
+```
+enable driven LOW   ->  interrupt pad reads 0
+enable driven HIGH  ->  interrupt pad reads 1
+```
 
-  ```
-  enable driven LOW   ->  interrupt pad reads 0
-  enable driven HIGH  ->  interrupt pad reads 1
-  ```
+**Read this conservatively.** The most likely explanation is that the enable
+line switches a power rail and the interrupt line carries a pull-up to that
+rail — so the reading tracks the rail, not the silicon. A 30-second recording at
+1.1 kHz with a finger repeatedly on the sensor produced **zero** movement on
+that line: 100% high, not one transition in 33,110 samples. That is what a
+passive pull-up looks like.
 
-  Something on the far end is really there and really responds. This is the only
-  direct physical evidence in the whole project.
-
-- **Interrupt**: responds as above, and is correctly configured as a
-  level-triggered input.
+So: the enable line switches *something*. **We have not proven the sensor MCU
+itself responds to anything.**
 
 **Data-in has never carried a single byte, under any condition.**
 

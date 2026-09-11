@@ -94,18 +94,26 @@ latched at its last driven value rather than floating high — so the
 "release the line and let the pull-up deassert reset" idiom that works on some
 sibling boards has no analogue here. Drive it explicitly instead.
 
-### The enable line is physically real
+### The enable line switches something — but read it conservatively
 
-The single piece of direct physical evidence in this project. The interrupt
-pad's level follows the enable pad's level, every time, in both directions:
+The interrupt pad's level follows the enable pad's level, every time, in both
+directions:
 
 ```
 enable LOW   ->  pin 41 = 0x40100100   (interrupt reads 0)
 enable HIGH  ->  pin 41 = 0x40100102   (interrupt reads 1)
 ```
 
-Powering the module down drags the interrupt line down with it. Something on
-the far end of that wire exists and responds.
+The tempting reading is that the module powers down and drags the interrupt line
+with it. The **more likely** reading is duller: the enable line switches a power
+rail, and the interrupt line simply has a pull-up to that rail, so what we are
+watching is the rail — not the sensor.
+
+A 30-second recording at 1.1 kHz with a finger repeatedly rested on the sensor
+produced no movement at all on that line (100% high, zero transitions in 33,110
+samples) and no non-idle SPI read. That is consistent with a passive pull-up.
+Treat this as evidence that a rail switches, **not** as evidence that the sensor
+MCU is alive.
 
 ## ACPI
 
