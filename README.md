@@ -51,10 +51,31 @@ Four independent GXFP51A0 machines, four independent investigators, all reading
 - [PopulusYang](https://github.com/PopulusYang/GXFP51A0-driver-failed), MateBook 13 WRTB — repo named "driver-failed"
 - a further report on [goodix-fp-dump](https://github.com/goodix-fp-linux-dev/goodix-fp-dump/issues)
 
-Different boards, different methods, identical dead end — while two sibling
-parts in the same family are finished and in daily use. **That pattern says
-GXFP51A0 is structurally different, not that four people made the same
-mistake.**
+Different boards, different methods, identical dead end — while two other parts
+in the same family are finished and in daily use.
+
+### The sensor is not the problem — it is the same chip that already works
+
+`GDIX51C0` is **the same Goodix die as `GXFP51A0`**. berkekbgz's parity record
+names its reference as the Windows stack *"selected by chip `0x2504`, sensor
+type 12 (`ChicagoHS`)"* with *"80x64 geometry, 64-byte OTP"* — identifier for
+identifier, that is this sensor. Their wire test even carries the chip-ID reply
+`82 05 00 a2 04 25 00 58`; our Windows transcript's reply begins
+`82 05 00 a2 04`. Byte identical.
+
+The ACPI ID differs because it is assigned per board integration, not per
+silicon.
+
+So the accurate statement is **not** "GXFP51A0 is a difficult chip". It is:
+
+> The same silicon is driven successfully on Linux today under the `GDIX51C0`
+> integration, and fails under the `GXFP51A0` integration on four machines out
+> of four.
+
+That points at the **board** — wiring, power, or a component in the signal path
+— and away from the chip, the protocol and the software, all three of which are
+demonstrably fine because someone else's code drives this exact die with the
+exact bytes in `docs/PROTOCOL.md`.
 
 ### Everything after the first reply is already solved
 

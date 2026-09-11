@@ -171,9 +171,11 @@ or at test points near it.
 
 ## Why this is worth someone's evening
 
-Two sibling sensors in this family are **finished** on Linux — GXFP5187 and
-GDIX51C0 both enrol and verify through fprintd today. GXFP51A0 is the only one
-nobody has ever got a byte out of, across four machines and four investigators.
+**`GDIX51C0` is the same die as `GXFP51A0`** — chip `0x2504`, sensor type 12,
+ChicagoHS, 80×64, 64-byte OTP, identical chip-ID reply bytes — and it is driven
+successfully on Linux today. GXFP5187 works too. This exact silicon is not the
+obstacle; the board it sits on is. Four machines, four investigators, never one
+byte.
 
 And everything downstream of that first byte is already written. The TLS/PSK
 layer that was assumed to be the wall is not: Sigfrodr's working 5187 driver
