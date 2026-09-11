@@ -77,12 +77,53 @@ is correct:
 | Device selection (right chip, right bus, right CS) | **proven** by sysfs trace |
 | Controller configuration | **proven** by live register read |
 | Receive machinery (engine, FIFO, driver, ioctls, clock) | **proven** by internal loopback |
-| Pad configuration (all six pads) | **proven** by pinctrl register decode |
-| **The wires between pad and sensor** | **the only unverified segment left** |
+| Pad *configuration* (all six pads) | **proven** by pinctrl register decode |
+| Pad *electrical function*, pin multiplexer | **NOT verified** — see below |
+| The wires between pad and sensor | **NOT verified** |
 
-There is nothing in software left between our `read()` and the pin. That is why
-the remaining question is physical, and why it is worth someone's evening with a
-logic clip rather than another month of code.
+### Exactly where the verified/unverified boundary sits
+
+`SPI_LOOP` sets `SSCR1` bit 2 (LBM), which ties the transmit shift register to
+the receive shift register **inside the SSP block** — before the pin
+multiplexer and before the pads. So the loopback proves everything from our
+`read()` down to the shifter, and nothing beyond it:
+
+```
+code → ioctl → spidev → pxa2xx-spi → FIFO → TX shifter ─┐   PROVEN
+  read ← FIFO ← RX shifter ←────────────────────────────┘
+
+TX shifter → pin mux → PCH pad → package ball → PCB trace
+   → connector → flex → sensor → and all the way back        NOT PROVEN
+```
+
+The pads and multiplexer are **inside** the unverified region. Their
+configuration registers read correctly, but configuration is not function, and
+their live state cannot be observed — see below.
+
+### Why the pads cannot be used as a software logic probe
+
+The BIOS locks them, and the lock bits explain every behaviour we see:
+
+```
+pin 41  IRQ    [LOCKED full]     PADCFGLOCK + PADCFGLOCKTX
+pin 44  CS0B   [LOCKED full]
+pin 45  CLK    [LOCKED full]
+pin 46  MISO   [LOCKED full]
+pin 47  MOSI   [LOCKED full]
+pin 189 enable [LOCKED]          PADCFGLOCK only — TX state NOT locked
+```
+
+`[LOCKED]` locks the pad's configuration; `[LOCKED full]` locks the
+configuration *and* the output state. That single difference is why the enable
+pin obeys our writes while the four bus pads cannot be turned into probes:
+reading their live level needs `GPIORXDIS` cleared, and that write is rejected
+by hardware until the next power cycle.
+
+Confirmed empirically: during a 4 KiB transfer, `MOSI` — a pin that is
+definitely toggling — never changed its readback bit. Neither did any other.
+
+There is nothing in software left between our `read()` and the pin, and no way
+to see past it. That is why the remaining question is physical.
 
 ## The measurement
 
