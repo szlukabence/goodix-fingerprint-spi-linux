@@ -9,6 +9,20 @@ re-deriving what is already ruled out.
 
 ---
 
+## The hardware works. This is not a broken wire.
+
+**Re-verified 2026-09-11:** the fingerprint still works normally under Windows on
+this machine, after a BIOS flash dump, toggling the firmware's fingerprint
+setting off and on, 88 software configurations and repeated power cycling of the
+sensor. A fresh driver log is byte-for-byte consistent with the original: chip
+`0x2504`, sensorType 12, 80×64, `GF_ST411SEC_APP_14115`, *"no need to update
+firmware"*, same `CHIP_RESET::0x010008`, same opening command order, no
+`HardResetMcu`.
+
+So the signal path physically carries data, today, on this board. Anyone picking
+this up should **not** go looking for a broken trace — look for a configuration
+or sequencing difference between the two operating systems.
+
 ## The situation, stated plainly
 
 Same silicon, same firmware, same boot path.
