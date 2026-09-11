@@ -40,6 +40,10 @@ Do not re-test these.
 | Reset polarity / pulse shape / settle time | Ten combinations tested (5 reset shapes × 2 speeds), including the exact sequence from a working sibling implementation. All returned `ff ff ff ff`. |
 | The host controller's spidev state being wedged | Sigfrodr documents a wedge needing "a long reset AND the detach/reattach of the spidev kernel driver". Tested 4 recovery shapes × 2 speeds; spidev genuinely detached and reattached each time. All 8 returned `ff ff ff ff`. |
 | A reset shape the working drivers use that we don't | Sigfrodr's **working** 5187 driver resets LOW 10 ms → HIGH → 120 ms settle — the same shape we already test. |
+| Talking to the wrong device / bus / chip select | Traced end to end: `/dev/spidev1.0` (153:0) resolves through sysfs back to `spi-GXFP51A0:00` under `00:1e.3`. Only one GXFP ACPI device exists; `spi0` is the BIOS-flash controller, unrelated. |
+| **Our own receive path being broken** | **Positive control**: spidev `SPI_LOOP` (SSCR1 LBM) loops TX→RX inside the SSP. A 10-byte pattern came back byte-perfect on the same open device with the same ioctls, while a normal transfer returns all-`ff`. The receive engine, RX FIFO, kernel driver read path and our ioctl usage are all proven good — and the clock genuinely runs. |
+| The controller being misconfigured | Live registers read from the LPSS BAR: mode 0, 8-bit, correct divider, loopback off, and `CS_CONTROL = 0xe003` — software mode, **CS deasserted**, CS0 selected. |
+| Windows applying hidden settings Linux misses | `ialpss2_spi_cnl.inf` — the INF for our exact controller `PCI\VEN_8086&DEV_02AB` — contains no tuning at all: only a power-management flag, an event-log path and a logging GUID. |
 
 ## What the enable line actually tells us
 
@@ -62,6 +66,23 @@ So: the enable line switches *something*. **We have not proven the sensor MCU
 itself responds to anything.**
 
 **Data-in has never carried a single byte, under any condition.**
+
+## The host side is fully verified
+
+Every layer between a `read()` and the pin has now been checked, and each one
+is correct:
+
+| Layer | Status |
+|---|---|
+| Device selection (right chip, right bus, right CS) | **proven** by sysfs trace |
+| Controller configuration | **proven** by live register read |
+| Receive machinery (engine, FIFO, driver, ioctls, clock) | **proven** by internal loopback |
+| Pad configuration (all six pads) | **proven** by pinctrl register decode |
+| **The wires between pad and sensor** | **the only unverified segment left** |
+
+There is nothing in software left between our `read()` and the pin. That is why
+the remaining question is physical, and why it is worth someone's evening with a
+logic clip rather than another month of code.
 
 ## The measurement
 
