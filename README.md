@@ -127,9 +127,14 @@ its first command in every condition we can create — cold boot, warm reboot,
 even after Linux switched it off. Under Linux the data-in line sits high and has
 never carried a single byte.
 
-Everything on the host side has been verified correct at register level, and the
-enable line has been proven to physically reach and power the sensor module. The
-residual unknown is confined to one question that software cannot answer.
+Every layer between a `read()` and the pin is verified: the right device is
+selected (traced through sysfs), the controller is configured correctly (live
+registers), our receive machinery works (internal loopback returns a pattern
+byte-perfect), and all six pads are configured correctly. What has **not** been
+shown is that the sensor MCU responds to anything at all — the enable line
+switches *something*, but that is most likely a power rail with a pull-up on
+the interrupt line, not the silicon answering. The residual unknown is confined
+to one question that software cannot answer.
 [docs/OPEN-QUESTION.md](docs/OPEN-QUESTION.md) states it precisely, lists what
 has already been ruled out (so nobody repeats it), and gives the procedure.
 
