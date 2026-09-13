@@ -54,9 +54,9 @@ Four independent GXFP51A0 machines, four independent investigators, all reading
 Different boards, different methods, identical dead end — while two other parts
 in the same family are finished and in daily use.
 
-### The sensor is not the problem — it is the same chip that already works
+### The sensor die is the same one that already works — the MCU may not be
 
-`GDIX51C0` is **the same Goodix die as `GXFP51A0`**. berkekbgz's parity record
+`GDIX51C0` uses **the same Goodix sensor die as `GXFP51A0`**. berkekbgz's parity record
 names its reference as the Windows stack *"selected by chip `0x2504`, sensor
 type 12 (`ChicagoHS`)"* with *"80x64 geometry, 64-byte OTP"* — identifier for
 identifier, that is this sensor. Their wire test even carries the chip-ID reply
@@ -66,16 +66,35 @@ identifier, that is this sensor. Their wire test even carries the chip-ID reply
 The ACPI ID differs because it is assigned per board integration, not per
 silicon.
 
+**Correction (2026-09-13):** a module is *two* chips — the sensor die, and a
+host-facing microcontroller that runs the Goodix firmware. **The host's SPI link
+ends at the microcontroller, not the sensor.** And those differ:
+
+| | Sensor die | MCU | Firmware | Linux |
+|---|---|---|---|---|
+| `GDIX51C0` (lexakimov's unit) | `0x2504` ChicagoHS | HDSC HC32F460 | `GF_HC460SEC_APP_14210` | works |
+| `GXFP5187` (Sigfrodr) | GF3288 | STM32F411 | `GF3288_ST411SEC_APP_11033` | works |
+| `GXFP51A0` (this one) | `0x2504` ChicagoHS | STM32F411 | `GF_ST411SEC_APP_14115` | silent |
+
+berkekbgz does not state which MCU their `GDIX51C0` carries. So "the same chip
+already works on Linux" holds for the sensor die only. It does not by itself
+explain the silence — an STM32F411 answers on Linux in the 5187 — but it is a
+real difference and earlier versions of this README overstated the match.
+
+The firmware *logic* does match across all three: the command dispatcher and its
+TLS gate are the same instruction sequence in the HC460 image and in ours (see
+`docs/OPEN-QUESTION.md`), so the protocol is not where they diverge.
+
 So the accurate statement is **not** "GXFP51A0 is a difficult chip". It is:
 
-> The same silicon is driven successfully on Linux today under the `GDIX51C0`
-> integration, and fails under the `GXFP51A0` integration on four machines out
+> The same sensor die and the same firmware logic are driven successfully on
+> Linux today, and fail under the `GXFP51A0` integration on four machines out
 > of four.
 
-That points at the **board** — wiring, power, or a component in the signal path
-— and away from the chip, the protocol and the software, all three of which are
-demonstrably fine because someone else's code drives this exact die with the
-exact bytes in `docs/PROTOCOL.md`.
+That points at the path the bytes travel — board, wiring, power, or the
+MCU's host interface — and away from the protocol and the command software,
+which are demonstrably fine because working code sends the exact bytes in
+`docs/PROTOCOL.md`.
 
 ### Everything after the first reply is already solved
 

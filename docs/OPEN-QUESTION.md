@@ -69,7 +69,7 @@ Do not re-test these.
 | The reset pulse being too short to actually reset | The enable line gates a rail with ~89 ms of bulk capacitance (measured, see [HARDWARE.md](HARDWARE.md)), so a short pulse never removes power — ours was 10 ms for a long time. Corrected and retested: 300 ms and 1000 ms resets, and true power cycles with 3 s and 8 s settles. All still `ff`. |
 | The sensor signalling on its interrupt line and us missing it | Sampled the interrupt pad at **7.6 µs** resolution in kernel space, 395,053 samples across the full opening sequence, with a deliberate rail cut inside the window as a control: exactly two transitions, both the control. The line never moves. (Windows sees it pulse once per reply, ~16 ms after each command.) |
 | Header and body sent as two SPI transactions | The bug that silenced Sigfrodr's 5187 for three days: the Windows log's `write 4` / `write N` pairs are two log lines for **one** buffer. Ran **his exact first-contact exchange verbatim** — preamble and `FIRMWARE_VERSION` each as one transfer, his delays, his two-step reads — across no reset / true power cycle + 600 ms / + 3 s, 10 MHz and 1 MHz, delays ×1, ×1.5, ×3, and preamble byte `0x00`/`0x01`: 36 rows, each with a control proving the rail was up. All `ff`. See `tools/sigfrodr_exact.py`. |
-| The sensor deliberately ignoring commands until TLS is up | The gate exists, but it cannot produce total silence. In our own firmware at `0x08023a1e`: drop only if the TLS flag is clear **and** `cmd0 ≤ 5`, then a 16-way dispatch on `cmd0` — identical to the one Sigfrodr found in the 3288 image. `FIRMWARE_VERSION` (`cmd0=0xA`) always passes. |
+| The sensor deliberately ignoring commands until TLS is up | The gate exists, but it cannot produce total silence. In our own firmware at `0x08023a1e`: drop only if the TLS flag is clear **and** `cmd0 ≤ 5`, then a 16-way dispatch on `cmd0` — identical to the one Sigfrodr found in the 3288 image, and the same instruction sequence (down to branch displacements) as the HDSC HC460 image `GF_HC460SEC_APP_14104` at `0x00020b62`. One source tree, compiled for two MCUs. `FIRMWARE_VERSION` (`cmd0=0xA`) always passes. |
 | The controller being misconfigured | Live registers read from the LPSS BAR: mode 0, 8-bit, correct divider, loopback off, and `CS_CONTROL = 0xe003` — software mode, **CS deasserted**, CS0 selected. |
 | Windows applying hidden settings Linux misses | `ialpss2_spi_cnl.inf` — the INF for our exact controller `PCI\VEN_8086&DEV_02AB` — contains no tuning at all: only a power-management flag, an event-log path and a logging GUID. |
 
@@ -211,11 +211,17 @@ or at test points near it.
 
 ## Why this is worth someone's evening
 
-**`GDIX51C0` is the same die as `GXFP51A0`** — chip `0x2504`, sensor type 12,
-ChicagoHS, 80×64, 64-byte OTP, identical chip-ID reply bytes — and it is driven
-successfully on Linux today. GXFP5187 works too. This exact silicon is not the
-obstacle; the board it sits on is. Four machines, four investigators, never one
-byte.
+**`GDIX51C0` uses the same sensor die as `GXFP51A0`** — chip `0x2504`, sensor
+type 12, ChicagoHS, 80×64, 64-byte OTP, identical chip-ID reply bytes — and it is
+driven successfully on Linux today. GXFP5187 works too.
+
+One caveat: the host talks to the module's **microcontroller**, not the sensor
+die, and lexakimov's working `GDIX51C0` carries an HDSC HC32F460
+(`GF_HC460SEC_APP_14210`) where this part carries an STM32F411
+(`GF_ST411SEC_APP_14115`). The 5187 shows an STM32F411 can answer on Linux, and
+the firmware logic is the same in both images, so this is a difference to keep
+in mind rather than an explanation. Four machines, four investigators, never
+one byte.
 
 And everything downstream of that first byte is already written. The TLS/PSK
 layer that was assumed to be the wall is not: Sigfrodr's working 5187 driver
