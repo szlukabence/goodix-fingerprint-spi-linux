@@ -96,6 +96,13 @@ sibling boards has no analogue here. Drive it explicitly instead.
 
 ### The enable line switches something — but read it conservatively
 
+> **Correction 2026-09-13:** pin 189 is an **active-HIGH reset**, not a power
+> enable. Under live Windows, with the sensor working, it is driven LOW
+> (`0x44000200`) and the interrupt reads LOW. The interrupt "following" it below
+> is the MCU: held in reset (HIGH) its interrupt output is undriven and reads
+> high; running (LOW) its firmware drives it low. See
+> [FIRST-CONTACT.md](FIRST-CONTACT.md).
+
 The interrupt pad's level follows the enable pad's level, every time, in both
 directions:
 
@@ -165,6 +172,12 @@ session. Whatever this buffer is for, reading it is not a prerequisite for
 talking to the sensor.
 
 ## The enable line gates a rail with ~89 ms of bulk capacitance (measured)
+
+> **Correction 2026-09-13:** the measurement stands, the explanation does not.
+> The constant 88.8 ms is the **MCU's boot time** after reset (pin 189) is
+> released — its firmware drives the interrupt line LOW about 89 ms later. The
+> "fast rise" is reset being asserted. Re-measured today: 89.7 ms. See
+> [FIRST-CONTACT.md](FIRST-CONTACT.md).
 
 Sweeping the enable-low hold time and watching the interrupt pad's live level at
 7.6 µs resolution gives a constant offset:

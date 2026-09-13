@@ -1,0 +1,85 @@
+### CS_HIGH reproduction  2026-09-13 19:12:32
+
+== A  CS_HIGH, 189 LOW, NOP+EVK+CHIPID   189=0  irq=0  mode=0x04  cmds=00,a8,82
+   irq after=0   non-idle bytes: 18 distinct
+     0000  a0 1a 00 ba a8 17 00 47 46 5f 53 54 34 31 31 53  .......GF_ST411S
+     0010  45 43 5f 41 50 50 5f 31 34 31 31 35 00 4c 4c 4c  EC_APP_14115.LLL
+     0020  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0030  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0040  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0050  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0060  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0070  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0080  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0090  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00a0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00b0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00c0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00d0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00e0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00f0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+
+== B  CS low,  189 LOW, NOP+EVK+CHIPID   189=0  irq=0  mode=0x00  cmds=00,a8,82
+   irq after=0   non-idle bytes: 0 distinct
+
+== C  CS_HIGH, 189 HIGH, NOP+EVK+CHIPID   189=1  irq=1  mode=0x04  cmds=00,a8,82
+   irq after=1   non-idle bytes: 0 distinct
+
+== D  CS_HIGH, 189 LOW, no commands   189=0  irq=0  mode=0x04  cmds=none
+   irq after=0   non-idle bytes: 9 distinct
+     0000  00 00 00 00 00 7f ff ff ff ff ff ff ff ff ff f0  ................
+     0010  00 00 00 00 07 ff ff ff ff ff ff ff ff ff ff 00  ................
+     0020  00 00 00 00 ff ff ff ff ff ff ff ff ff ff f0 00  ................
+     0030  00 00 00 0f ff ff ff ff ff ff ff ff ff fe 00 00  ................
+     0040  00 00 00 ff ff ff ff ff ff ff ff ff ff e0 00 00  ................
+     0050  00 00 0f ff ff ff ff ff ff ff ff ff fe 00 00 00  ................
+     0060  00 00 ff ff ff ff ff ff ff ff ff ff e0 00 00 00  ................
+     0070  00 0f ff ff ff ff ff ff ff ff ff fe 00 00 00 00  ................
+     0080  00 ff ff ff ff ff ff ff ff ff ff e0 00 00 00 00  ................
+     0090  0f ff ff ff ff ff ff ff ff ff fe 00 00 00 00 00  ................
+     00a0  ff ff ff ff ff ff ff ff ff ff e0 00 00 00 00 0f  ................
+     00b0  ff ff ff ff ff ff ff ff ff fe 00 00 00 00 00 ff  ................
+     00c0  ff ff ff ff ff ff ff ff ff e0 00 00 00 00 0f ff  ................
+     00d0  ff ff ff ff ff ff ff ff fe 00 00 00 00 00 ff ff  ................
+     00e0  ff ff ff ff ff ff ff ff e0 00 00 00 00 1f ff ff  ................
+     00f0  ff ff ff ff ff ff ff fc 00 00 00 00 01 ff ff ff  ................
+
+== E  CS_HIGH, 189 LOW, EVK only   189=0  irq=0  mode=0x04  cmds=a8
+   irq after=1   non-idle bytes: 7 distinct
+     0000  a0 06 00 a6 b0 03 00 a8 03 4c 4c 4c 4c 4c 4c 4c  .........LLLLLLL
+     0010  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0020  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0030  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0040  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0050  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0060  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0070  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0080  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0090  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00a0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00b0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00c0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00d0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00e0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00f0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+
+== A' repeat of A   189=0  irq=0  mode=0x04  cmds=00,a8,82
+   irq after=0   non-idle bytes: 18 distinct
+     0000  a0 1a 00 ba a8 17 00 47 46 5f 53 54 34 31 31 53  .......GF_ST411S
+     0010  45 43 5f 41 50 50 5f 31 34 31 31 35 00 4c 4c 4c  EC_APP_14115.LLL
+     0020  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0030  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0040  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0050  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0060  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0070  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0080  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     0090  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00a0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00b0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00c0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00d0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00e0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+     00f0  4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c  LLLLLLLLLLLLLLLL
+
+left 189 LOW, irq=0

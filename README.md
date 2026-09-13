@@ -3,11 +3,18 @@
 Reverse engineering of the fingerprint sensor in the **Huawei MateBook 13 (2020)**
 (WRTB-WXX9 / M1260), and of the Goodix Milan-SPI family generally.
 
-**Status: the protocol is solved and independently confirmed. The driver is
-written. One hardware question remains open, and it needs a logic analyser — see
-[docs/OPEN-QUESTION.md](docs/OPEN-QUESTION.md).** That document is a complete,
-specific work order; someone with this laptop and a €30 logic clip should be
-able to close it in an evening.
+**Status (2026-09-13): the sensor answers on Linux.** After ~300 silent
+attempts, it returned a complete, checksum-valid firmware-version reply
+(`GF_ST411SEC_APP_14115`) over spidev. Two conditions are required, and neither
+works alone:
+
+1. **Pin 189 (gpiochip0 line 264) held LOW.** It is an active-HIGH **reset**,
+   not a power enable — HIGH holds the MCU in reset.
+2. **spidev mode 0 with `SPI_CS_HIGH`.**
+
+How, why, the bytes and the controls: [docs/FIRST-CONTACT.md](docs/FIRST-CONTACT.md).
+Reproduce it: `sudo python3 tools/cshigh_repro.py`. Next: config upload, TLS
+and image capture, which already exist in working code on sibling parts.
 
 Everything here was derived from a machine the author owns, from a driver the
 author is licensed to run, for the purpose of interoperability.
@@ -41,10 +48,12 @@ This matters more than anything else here.
 | **GXFP5187** (MateBook X Pro) | ✅ **fully working** — enrol + verify via fprintd, own matcher | [Sigfrodr/libfprint-goodixtls](https://github.com/Sigfrodr/libfprint-goodixtls) |
 | **GDIX51C0** (MateBook 16s) | ✅ **working** libfprint driver — images, enrol | [berkekbgz/libfprint-goodix-spi](https://github.com/berkekbgz/libfprint-goodix-spi) |
 | **GDIX51C0** | ✅ PoC — scan, enrol, delete | [lexakimov/goodix51c0_spi-reversing](https://github.com/lexakimov/goodix51c0_spi-reversing) |
-| **GXFP51A0** | ❌ **no one, on any machine** | this repo, and the three below |
+| **GXFP51A0** | 🟡 **first contact 2026-09-13** — replies to commands; driver work in progress | this repo |
 
-Four independent GXFP51A0 machines, four independent investigators, all reading
-`0xff`:
+Until 2026-09-13, four independent GXFP51A0 machines and four independent
+investigators all read `0xff`. **If you are one of them, try
+[docs/FIRST-CONTACT.md](docs/FIRST-CONTACT.md) — the two conditions are cheap to
+test:**
 
 - this MateBook 13 2020
 - [GodsQuantum](https://github.com/GodsQuantum/huawei-matebook-fingerprint-linux), MateBook 13 2021 — libfprint integration, deep controller-side analysis
@@ -74,7 +83,7 @@ ends at the microcontroller, not the sensor.** And those differ:
 |---|---|---|---|---|
 | `GDIX51C0` (lexakimov's unit) | `0x2504` ChicagoHS | HDSC HC32F460 | `GF_HC460SEC_APP_14210` | works |
 | `GXFP5187` (Sigfrodr) | GF3288 | STM32F411 | `GF3288_ST411SEC_APP_11033` | works |
-| `GXFP51A0` (this one) | `0x2504` ChicagoHS | STM32F411 | `GF_ST411SEC_APP_14115` | silent |
+| `GXFP51A0` (this one) | `0x2504` ChicagoHS | STM32F411 | `GF_ST411SEC_APP_14115` | answers (since 2026-09-13) |
 
 berkekbgz does not state which MCU their `GDIX51C0` carries. So "the same chip
 already works on Linux" holds for the sensor die only. It does not by itself
@@ -104,8 +113,9 @@ sensor's own RAM** with the `0xF2` memory command — 48 bytes, no Intel ME, no
 SGX, no IAP.
 
 So config upload, TLS, image capture, decoding, enrolment, matching and fprintd
-integration all exist in working code on sibling silicon. **The entire remaining
-problem for GXFP51A0 is getting one byte back.**
+integration all exist in working code on sibling silicon. For a long time **the
+entire remaining problem for GXFP51A0 was getting one byte back** — and on
+2026-09-13 it came back.
 
 ---
 
@@ -139,23 +149,19 @@ wrong. Both are corrected here, with evidence.
 - **A Linux kernel driver** with a debugfs harness ([kernel/](kernel/)) and a
   dependency-free userspace toolkit ([tools/](tools/)).
 
-## What is NOT established
+## What is NOT established yet
 
-The sensor has never replied to Linux on this machine. Under Windows it answers
-its first command in every condition we can create — cold boot, warm reboot,
-even after Linux switched it off. Under Linux the data-in line sits high and has
-never carried a single byte.
+- **Why chip select has to be inverted.** `_CRS` declares `PolarityLow` and
+  Intel's Windows driver logs `CsPolarity:Low`, yet Linux only gets replies with
+  `SPI_CS_HIGH`. Not yet measured at the register level.
+- **Everything after first contact on this part**: config upload, the TLS
+  handshake, image capture and matching. The protocol is shared with sibling
+  parts that already do all of it.
 
-Every layer between a `read()` and the pin is verified: the right device is
-selected (traced through sysfs), the controller is configured correctly (live
-registers), our receive machinery works (internal loopback returns a pattern
-byte-perfect), and all six pads are configured correctly. What has **not** been
-shown is that the sensor MCU responds to anything at all — the enable line
-switches *something*, but that is most likely a power rail with a pull-up on
-the interrupt line, not the silicon answering. The residual unknown is confined
-to one question that software cannot answer.
-[docs/OPEN-QUESTION.md](docs/OPEN-QUESTION.md) states it precisely, lists what
-has already been ruled out (so nobody repeats it), and gives the procedure.
+The long investigation that preceded first contact is kept, unedited apart from
+correction banners, in [docs/OPEN-QUESTION.md](docs/OPEN-QUESTION.md). Many of
+its "ruled out" rows were run with pin 189 HIGH — the MCU held in reset — so
+treat them as untested, not disproved.
 
 ## Layout
 
@@ -163,7 +169,8 @@ has already been ruled out (so nobody repeats it), and gives the procedure.
 docs/PROTOCOL.md         the wire protocol, with a source citation per claim
 docs/HARDWARE.md         sensor identity, ACPI, pin map, pad register decode
 docs/WINDOWS-LOGGING.md  how to make Goodix's driver log its own SPI traffic
-docs/OPEN-QUESTION.md    the one unsolved thing, and how to measure it
+docs/FIRST-CONTACT.md    how the sensor was made to answer, with controls
+docs/OPEN-QUESTION.md    the investigation before first contact (historical)
 docs/FIRMWARE.md         where the MCU images live and how to get them
 tools/                   userspace toolkit + RE tooling (no dependencies)
 kernel/                  out-of-tree Linux driver, GPL-2.0
@@ -178,8 +185,8 @@ sudo modprobe spidev
 echo spidev | sudo tee /sys/bus/spi/devices/spi-GXFP51A0:00/driver_override
 echo spi-GXFP51A0:00 | sudo tee /sys/bus/spi/drivers/spidev/bind
 
-# 2. try the bring-up sequence (5 reset variants x 2 speeds)
-sudo python3 tools/refseq.py
+# 2. first contact: pin 189 LOW + SPI_CS_HIGH, with controls
+sudo python3 tools/cshigh_repro.py
 
 # 3. pull the MCU firmware out of the Windows driver
 python3 tools/extract_firmware.py /path/to/gfspi.dll -o firmware/

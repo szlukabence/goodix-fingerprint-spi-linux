@@ -1,5 +1,16 @@
 # The one open question
 
+> **ANSWERED 2026-09-13 — the sensor replies on Linux.** It needs pin 189 held
+> **LOW** (it is an active-HIGH reset, not an enable) **and** spidev
+> `SPI_CS_HIGH`. See [FIRST-CONTACT.md](FIRST-CONTACT.md).
+>
+> This document is kept as the record of the investigation before that. Read it
+> with two corrections in mind:
+> - **Most "ruled out" rows below ran with pin 189 HIGH**, i.e. with the MCU held
+>   in reset. They are untested, not disproved.
+> - The retraction below that `SPI_CS_HIGH` "never reached the hardware" was
+>   itself wrong: it is one of the two conditions that make the sensor answer.
+
 **Does the sensor ever drive the data-in (MISO) line, and is its output actually
 connected to the pin the host reads?**
 
