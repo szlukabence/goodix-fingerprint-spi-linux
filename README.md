@@ -214,6 +214,14 @@ The included `data/sensor-config.bin` is the 256-byte generic sensor tuning
 block the driver sends at init. It is device-independent and is included because
 interoperability is impossible without it.
 
+## Support this work
+
+This is unpaid reverse engineering done on a single laptop, in the open, so the
+next person with this sensor doesn't start from zero. If it saved you time or you
+just want to see it finished, you can [**buy me a
+coffee**](https://buymeacoffee.com/szlukabence). Entirely optional — a tested
+bug report or a "my sensor replied too" is worth just as much.
+
 ## Licence
 
 Kernel driver: GPL-2.0. Tools and documentation: same, so the whole thing can be
