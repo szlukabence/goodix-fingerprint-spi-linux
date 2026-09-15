@@ -86,6 +86,34 @@ Script: [tools/cshigh_repro.py](../tools/cshigh_repro.py).
 - Why Linux needs `SPI_CS_HIGH` when ACPI and Windows both say active-low.
 - Config upload, TLS, image capture and matching on this part.
 
+## Confirmed on a second machine, different board
+
+**2026-09-14, [@xamelllion](https://github.com/szlukabence/goodix-fingerprint-spi-linux/issues/1),
+HONOR BBR-WAX9** (`M1050`, BIOS 3.15, Ubuntu 24.04, Secure Boot on): the sensor
+answered **on the first run**, with a byte-identical reply — same firmware string,
+the same case-E ACK, and B/C/D correctly silent. Independent confirmation that
+the two conditions are the mechanism and not a quirk of one laptop.
+
+Their board differs in ways worth knowing, because two of them would break a
+hardcoded tool:
+
+| | this MateBook 13 | HONOR BBR-WAX9 |
+|---|---|---|
+| spidev node | `spidev1.0` | **`spidev0.0`** (here `spi1.0` is the BIOS flash) |
+| interrupt line | 48 (pin 41) | **279** (pin 204, `UART2_CTSB`) |
+| reset line | 264 (pin 189) | 264 (pin 189) — same |
+| pad reset config | DEEP (`0x4…`) | PLTRST (`0x8…`) |
+
+On that board the `_CRS` pin numbers are not constants — the DSDT patches them at
+runtime from GNVS (`SPIN = GNUM (GFPS)`, `GPIN = GNUM (GFPI)`). @xamelllion
+identified the real lines from pad ownership instead: pads that are **not**
+ACPI-owned, where the interrupt is a level-triggered input routed to the IOxAPIC
+and the reset is an output. `tools/board.py` now does exactly that automatically,
+and prints what it picked plus any other candidates.
+
+They also confirmed the reset pin was **LOW at boot before anything touched it**,
+matching the Windows reading here.
+
 ## If you have a GXFP51A0 that reads `0xff`
 
 ```sh
@@ -95,5 +123,12 @@ echo spi-GXFP51A0:00 | sudo tee /sys/bus/spi/drivers/spidev/bind
 sudo python3 tools/cshigh_repro.py
 ```
 
-Your reset line number may differ from 264 — check `_CRS` or
-`/sys/kernel/debug/pinctrl/*/pins`. Please report the result either way.
+The spidev node and both GPIO lines are **discovered, not assumed** — check the
+header it prints. Override anything that looks wrong:
+
+```sh
+sudo python3 tools/cshigh_repro.py --spidev /dev/spidev0.0 --reset 264 --irq 279
+sudo python3 tools/board.py      # just show what it would pick
+```
+
+Please report the result either way — a "still silent" is as useful as a success.

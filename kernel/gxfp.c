@@ -11,7 +11,7 @@
  *             GpioIo (OutputOnly, PullUp) -> sensor enable / reset
  *
  * Wire protocol recovered from the Windows UMDF driver gfspi.dll v1.1.141.40;
- * see docs/PROTOCOL.md.
+ * see 04-re-notes/PROTOCOL.md.
  *
  * This revision is a bring-up/diagnostic driver: it claims the ACPI resources
  * properly and exposes debugfs knobs so the protocol can be exercised from
@@ -192,9 +192,17 @@ static irqreturn_t gxfp_isr(int irq, void *dev_id)
  *   private block at 0x200: +0x20 SSP_REG, +0x24 CS_CONTROL, +0xfc CAPABILITIES
  * CS_CONTROL: bit0 SW_MODE, bit1 CS_HIGH(deasserted), bits 9:8 cs_sel
  */
-static int touch_enable = 1;
+/* The ACPI GpioIo is an active-HIGH RESET, not a power enable (AUDIT AG/AJ):
+ * HIGH holds the MCU in reset and the part is silent; LOW lets it run, and its
+ * firmware drives the interrupt line low ~90 ms later. The old default of 1 held
+ * the sensor in reset at probe, which is exactly the state in which nothing ever
+ * answered -- so the default is 0. @xamelllion hit this on an HONOR BBR-WAX9
+ * (repo issue #1). Keep the parameter name for anyone scripting against it.
+ */
+static int touch_enable;	/* 0 = release reset at probe */
 module_param(touch_enable, int, 0444);
-MODULE_PARM_DESC(touch_enable, "1/0 = drive the enable GPIO high/low at probe, -1 = leave it alone");
+MODULE_PARM_DESC(touch_enable,
+		 "0 = release reset at probe (default, MCU runs), 1 = hold the MCU in reset, -1 = leave the line alone");
 
 /* Chip-select timing. The LPSS SSP has no CS setup/hold register; the SPI core
  * applies these delays generically in spi_set_cs(). Windows' SPB stack may insert
@@ -219,7 +227,7 @@ MODULE_PARM_DESC(lpss_phys, "physical address of the LPSS SSP BAR0");
 
 static int gxfp_ctlregs_show(struct seq_file *sf, void *unused)
 {
-	void __iomem *base = ioremap(lpss_phys, 0x1000);
+	void __iomem *base = ioremap_uc(lpss_phys, 0x1000);
 	u32 sscr0, sscr1, sssr, cs, ssp, caps;
 
 	if (!base) {
@@ -256,7 +264,7 @@ DEFINE_SHOW_ATTRIBUTE(gxfp_ctlregs);
 static int gxfp_cstest_show(struct seq_file *sf, void *unused)
 {
 	struct gxfp *g = sf->private;
-	void __iomem *base = ioremap(lpss_phys, 0x1000);
+	void __iomem *base = ioremap_uc(lpss_phys, 0x1000);
 	struct spi_transfer t = { .tx_buf = g->txbuf, .rx_buf = g->rxbuf,
 				  .len = 2048, .speed_hz = 100000 };
 	struct spi_message m;
@@ -426,7 +434,7 @@ DEFINE_SHOW_ATTRIBUTE(gxfp_replay);
 static int gxfp_padprobe_show(struct seq_file *sf, void *unused)
 {
 	struct gxfp *g = sf->private;
-	void __iomem *com = ioremap(gpio_com0, 0x1000);
+	void __iomem *com = ioremap_uc(gpio_com0, 0x1000);
 	static const struct { u32 off; const char *n; u32 expect; } pads[] = {
 		{ PADOFF_CS0B, "CS0B", 0x44000700 },
 		{ PADOFF_CLK,  "CLK ", 0x44000700 },
