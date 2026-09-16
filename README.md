@@ -3,7 +3,17 @@
 Reverse engineering of the fingerprint sensor in the **Huawei MateBook 13 (2020)**
 (WRTB-WXX9 / M1260), and of the Goodix Milan-SPI family generally.
 
-**Status (2026-09-13): the sensor answers on Linux.** After ~300 silent
+**Status (2026-09-16): the encrypted channel is open on the hardware.** The
+sensor's TLS-PSK was extracted from its own flash, validated offline against a
+captured handshake, and used to complete a **live TLS 1.2 handshake** with the
+sensor (`PSK-AES128-GCM-SHA256`). The whole crypto path that blocked every prior
+investigator — reset polarity, `SPI_CS_HIGH`, config upload, the flash-blob PSK
+decrypt — is solved and reproduced. **Method (no key material):**
+[docs/PMK-AND-TLS.md](docs/PMK-AND-TLS.md). Remaining: retrieving the fingerprint
+raster (`0x20` get-image), which is normal protocol work against a reference
+driver in hand.
+
+**First contact (2026-09-13): the sensor answers on Linux.** After ~300 silent
 attempts, it returned a complete, checksum-valid firmware-version reply
 (`GF_ST411SEC_APP_14115`) over spidev. Two conditions are required, and neither
 works alone:
@@ -13,8 +23,7 @@ works alone:
 2. **spidev mode 0 with `SPI_CS_HIGH`.**
 
 How, why, the bytes and the controls: [docs/FIRST-CONTACT.md](docs/FIRST-CONTACT.md).
-Reproduce it: `sudo python3 tools/cshigh_repro.py`. Next: config upload, TLS
-and image capture, which already exist in working code on sibling parts.
+Reproduce it: `sudo python3 tools/cshigh_repro.py`.
 
 Everything here was derived from a machine the author owns, from a driver the
 author is licensed to run, for the purpose of interoperability.
