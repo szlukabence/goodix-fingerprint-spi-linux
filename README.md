@@ -3,6 +3,14 @@
 Reverse engineering of the fingerprint sensor in the **Huawei MateBook 13 (2020)**
 (WRTB-WXX9 / M1260), and of the Goodix Milan-SPI family generally.
 
+**Status (2026-09-17): the sensor produces real fingerprint images on Linux.**
+Capture, transport, decrypt, decode and enhancement work end to end — see
+[docs/IMAGING.md](docs/IMAGING.md) for the full method (FDT payload format, the
+oversized TLS record, the 64×80 active geometry, the 6-bytes→4-pixels decode, and
+the two image-formation corrections that actually mattered). Matching/verification
+is **not** solved: NBIS on a ~3 mm sensing area is a demonstrator, not
+authentication.
+
 **Status (2026-09-16): the encrypted channel is open on the hardware.** The
 sensor's TLS-PSK was extracted from its own flash, validated offline against a
 captured handshake, and used to complete a **live TLS 1.2 handshake** with the
